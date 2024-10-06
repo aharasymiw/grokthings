@@ -13,7 +13,7 @@ const PARALLELIZATION = 5;
 
 router.post("/register", (req: Request, res: Response) => {
 
-  const { firstName, lastName, userName, email, password } = req.body;
+  const { firstName, lastName, userName, email, phone, password } = req.body;
 
   const salt = randomBytes(128);
 
@@ -25,9 +25,9 @@ router.post("/register", (req: Request, res: Response) => {
 
     const query = `
       INSERT INTO users
-        (first_name, last_name, user_name, email, hashed_salted_password, salt)
+        (first_name, last_name, user_name, email, phone, hashed_salted_password, salt)
       VALUES
-        ($1, $2, $3, $4, $5, $6)
+        ($1, $2, $3, $4, $5, $6, $7)
       RETURNING
         id;
     `;
@@ -37,6 +37,7 @@ router.post("/register", (req: Request, res: Response) => {
       lastName,
       userName,
       email,
+      phone,
       hashed_salted_password,
       salt
     ];
@@ -52,7 +53,7 @@ router.post("/register", (req: Request, res: Response) => {
         if (dbErr.code === "23505" && dbErr.constraint === "users_email_key") {
           res
             .status(400)
-            .json({ message: `Invalid signup info, please try again.` });
+            .json({ message: `Error registering ${email}.  Please try a different email address.` });
         } else {
           res.status(500).json({ message: "Registration Error" });
         }

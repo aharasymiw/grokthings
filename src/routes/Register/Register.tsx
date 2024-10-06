@@ -36,7 +36,7 @@ const Register = () => {
       })
       .catch(error => {
         console.log('Error registering user', error);
-        alert("Error registering new user.  Please try again.  If the problem persists, please contact support.")
+        alert(error.response.data.message);
       })
   }
 

@@ -3,14 +3,14 @@ import axios from 'axios';
 
 const Login = () => {
 
-  const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   function handleSubmit(evt: FormEvent) {
     evt.preventDefault();
 
     const payload = {
-      userName,
+      email,
       password
     };
 
@@ -18,7 +18,7 @@ const Login = () => {
       .then(response => {
         console.log('User login successful.', response.data);
 
-        setUserName('');
+        setEmail('');
         setPassword('');
 
       })
@@ -32,8 +32,8 @@ const Login = () => {
     <>
       <form onSubmit={handleSubmit}>
 
-      <label htmlFor="user_name">User Name</label>
-        <input type="text" name="user_name" placeholder="secure👍🏻user_01" required value={userName} onChange={(e) => setUserName(e.target.value)} />
+        <label htmlFor="email">Email</label>
+        <input type="email" name="email" placeholder="you@domain.com" required autoComplete="username" value={email} onChange={(e) => setEmail(e.target.value)} />
 
         <label htmlFor="password">Password</label>
         <input type="password" name="password" placeholder="l*O9l(lnF56So^O" required autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} />
