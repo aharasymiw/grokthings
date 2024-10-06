@@ -1,24 +1,54 @@
 {
   "name": "grokthings",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "private": false,
+  "version": "1.0.0",
+  "description": "Blog Site",
+  "main": "dist/server/server.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node dist/server/server.js",
     "dev": "vite",
     "client": "vite",
-    "server": "node --watch server/server.js",
-    "build": "tsc -b && vite build",
+    "server": "node --watch dist/server/server.js",
+    "build:client": "vite build --outDir dist/client",
+    "build:server": "tsc server/*.ts --outDir dist/server && tsc server/*/*.ts --outDir dist/server",
+    "build": "npm run build:client && npm run build:server",    
     "preview": "vite preview"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aharasymiw/grokthings.git"
+  },
+  "keywords": [
+    "auth",
+    "blog",
+    "D&D",
+    "woodworking",
+    "development",
+    "engineering",
+    "vegan",
+    "gluten free",
+    "san francisco",
+    "minneapolis",
+    "toastmasters"
+  ],
+  "author": "Andrew Harasymiw",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/aharasymiw/grokthings/issues"
+  },
+  "homepage": "https://github.com/aharasymiw/grokthings#readme",
   "dependencies": {
     "axios": "^1.7.7",
     "express": "^4.21.0",
+    "pg": "^8.13.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2"
   },
   "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.7.4",
+    "@types/pg": "^8.11.10",
     "@types/react": "^18.3.10",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.2",
