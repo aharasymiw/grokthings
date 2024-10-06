@@ -4,7 +4,7 @@ CREATE TABLE users (
   public_user_id uuid DEFAULT gen_random_uuid(),
   first_name VARCHAR,
   last_name VARCHAR,
-  display_name VARCHAR NOT NULL,
+  user_name VARCHAR NOT NULL,
   -- indexed
   email VARCHAR unique,
   phone VARCHAR,

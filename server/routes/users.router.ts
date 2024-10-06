@@ -13,7 +13,7 @@ const PARALLELIZATION = 5;
 
 router.post("/register", (req: Request, res: Response) => {
 
-  const { firstName, lastName, displayName, email, password } = req.body;
+  const { firstName, lastName, userName, email, password } = req.body;
 
   const salt = randomBytes(128);
 
@@ -25,7 +25,7 @@ router.post("/register", (req: Request, res: Response) => {
 
     const query = `
       INSERT INTO users
-        (first_name, last_name, display_name, email, hashed_salted_password, salt)
+        (first_name, last_name, user_name, email, hashed_salted_password, salt)
       VALUES
         ($1, $2, $3, $4, $5, $6)
       RETURNING
@@ -35,7 +35,7 @@ router.post("/register", (req: Request, res: Response) => {
     const queryValues = [
       firstName,
       lastName,
-      displayName,
+      userName,
       email,
       hashed_salted_password,
       salt
@@ -65,7 +65,7 @@ router.post("/login", (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   const query = `
-        SELECT * FROM
+        SELECT id, first_name as firstName, last_name as lastName, user_name as userName, email, phone FROM
             users
         WHERE
             email = $1;
@@ -90,20 +90,9 @@ router.post("/login", (req: Request, res: Response) => {
 
           if (timingSafeEqual(stored_hashed_salted_password, attempted_hashed_salted_password)) {
             console.log("passwords match");
-            let body = {
-              id: user.id,
-              firstName: user.first_name,
-              lastName: user.last_name,
-              displayName: user.display_name,
-              email: user.email,
-              phone: user.phone,
-              message: "Success!",
-            };
+            let body = { ...user, message: "Success!" };
 
-            // res.append('Access-Control-Allow-Credentials', 'true');
             res.cookie('__Secure-cookieName', 'cookieValue', { sameSite: "none", secure: true });
-            // res.cookie('cookieName', 'cookieValue', { domain: DOMAIN, httpOnly: false, signed: false, expires: new Date(Date.now() + 900000), secure: false, sameSite: 'none'});
-            // res.cookie("cookie_name", "cookie_value", { domain: process.env.ORIGIN, expires: new Date(Date.now() + 900000), httpOnly: false, path: '/' })
 
             res.send(body);
           } else {

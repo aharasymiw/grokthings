@@ -32,7 +32,7 @@ const Login = () => {
     <>
       <form onSubmit={handleSubmit}>
 
-      <label htmlFor="user_name">Display Name</label>
+      <label htmlFor="user_name">User Name</label>
         <input type="text" name="user_name" placeholder="secure👍🏻user_01" required value={userName} onChange={(e) => setUserName(e.target.value)} />
 
         <label htmlFor="password">Password</label>

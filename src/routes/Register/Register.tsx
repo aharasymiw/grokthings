@@ -50,7 +50,7 @@ const Register = () => {
         <label htmlFor="last_name">Last Name</label>
         <input type="text" name="last_name" placeholder="Alice" required autoComplete="family-name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
 
-        <label htmlFor="user_name">Display Name</label>
+        <label htmlFor="user_name">User Name</label>
         <input type="text" name="user_name" placeholder="secure👍🏻user_01" required value={userName} onChange={(e) => setUserName(e.target.value)} />
 
         <label htmlFor="email">Email</label>
