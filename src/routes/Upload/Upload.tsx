@@ -3,7 +3,7 @@ import { createRef, useState } from 'react';
 
 import axios from 'axios';
 
-const PhotoUpload = () => {
+const Upload = () => {
 
   const [photo, setPhoto] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -99,4 +99,4 @@ const PhotoUpload = () => {
   );
 };
 
-export default PhotoUpload;
+export default Upload;
