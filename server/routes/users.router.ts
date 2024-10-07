@@ -45,7 +45,7 @@ router.post("/register", (req: Request, res: Response) => {
     pool
       .query(query, queryValues)
       .then((dbRes: QueryResult) => {
-        res.cookie("cookie_name", "cookie_value", { domain: DOMAIN, expires: new Date(Date.now() + 900000), httpOnly: false, path: '/' })
+        res.cookie('__Secure-cookieName', 'cookieValue', { expires: new Date(Date.now() + 900000), httpOnly: true, path: '/', sameSite: "none", secure: true });
         res.status(201).json({ message: `Registration Successful!`, id: dbRes.rows[0].id });
       })
       .catch((dbErr: DatabaseError) => {
@@ -66,7 +66,7 @@ router.post("/login", (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   const query = `
-        SELECT id, first_name as firstName, last_name as lastName, user_name as userName, email, phone FROM
+        SELECT id, "first_name" as "firstName", "last_name" as "lastName", "user_name" as "userName", email, phone, salt, hashed_salted_password FROM
             users
         WHERE
             email = $1;
@@ -90,14 +90,21 @@ router.post("/login", (req: Request, res: Response) => {
           if (err) throw err;
 
           if (timingSafeEqual(stored_hashed_salted_password, attempted_hashed_salted_password)) {
-            console.log("passwords match");
-            let body = { ...user, message: "Success!" };
 
-            res.cookie('__Secure-cookieName', 'cookieValue', { sameSite: "none", secure: true });
+            let body = {
+              id: user.id,
+              firstName: user.firstName,
+              lastName: user.lastName,
+              userName: user.userName,
+              email: user.email,
+              phone: user.phone,
+              message: "Success!" 
+            };
+
+            res.cookie('__Secure-cookieName', 'cookieValue', { expires: new Date(Date.now() + 900000), httpOnly: true, path: '/', sameSite: "none", secure: true });
 
             res.send(body);
           } else {
-            console.log("passwords dont match");
             let body = {
               message: "That combination of email and password does not exist",
             };
@@ -105,7 +112,6 @@ router.post("/login", (req: Request, res: Response) => {
           }
         });
       } else {
-        console.log("user not found");
         let body = {
           message: "That combination of email and password does not exist",
         };
@@ -121,8 +127,6 @@ router.post("/login", (req: Request, res: Response) => {
 router.put("/reset/:id", (req: Request, res: Response) => {
 
   const id = req.params.id;
-
-  console.log('id', id);
 
   const { email, currentPassword, newPassword } = req.body;
 
@@ -155,7 +159,6 @@ router.put("/reset/:id", (req: Request, res: Response) => {
           if (err) throw err;
 
           if (timingSafeEqual(stored_hashed_salted_password, current_hashed_salted_password)) {
-            console.log("passwords match");
 
             const newSalt = randomBytes(128);
 
@@ -203,7 +206,6 @@ router.put("/reset/:id", (req: Request, res: Response) => {
                 });
             });
           } else {
-            console.log("passwords dont match");
             let body = {
               message: "That combination of email and password does not exist",
             };
@@ -211,7 +213,6 @@ router.put("/reset/:id", (req: Request, res: Response) => {
           }
         });
       } else {
-        console.log("user not found");
         let body = {
           message: "That combination of email and password does not exist",
         };
