@@ -16,11 +16,11 @@ const NavBar = () => {
       <Link to={`/`} className="link site-title">GrokThings</Link>
 
       {/* Hamburger Menu */}
-      <a href={'#'} className={"toggle-button"} onClick={() => setMenuIsActive(!menuIsActive)}>
+      <div className={"toggle-button"} onClick={() => setMenuIsActive(!menuIsActive)}>
         <span className="bar"></span>
         <span className="bar"></span>
         <span className="bar"></span>
-      </a>
+      </div>
 
       {/* Navbar Links */}
       <div className={`navbar-links ${menuIsActive ? "active" : ""}`}>
