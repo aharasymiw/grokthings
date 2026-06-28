@@ -1,0 +1,56 @@
+.about__grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+.about__para {
+  font-size: var(--step-1);
+  margin-top: var(--space-4);
+}
+
+/* Mission, pinned like an index card. Amber FILL + dark ink (constant in
+   both themes) — never amber text. */
+.about__mission {
+  background: var(--accent-amber-fill);
+  color: var(--on-amber-fill);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-2);
+  position: relative;
+  /* A gentle paper-pin tilt; squared up under reduced motion. */
+  rotate: -1.2deg;
+}
+.about__mission-label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--step--1);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+.about__mission-text {
+  font-size: var(--step-1);
+  line-height: 1.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about__mission {
+    rotate: 0deg;
+  }
+}
+[data-calm='true'] .about__mission {
+  rotate: 0deg;
+}
+
+@media (min-width: 48rem) {
+  .about__grid {
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-7);
+  }
+  .about__mission {
+    position: sticky;
+    top: calc(var(--header-h) + var(--space-4));
+  }
+}

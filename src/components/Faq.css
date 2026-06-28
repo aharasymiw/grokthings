@@ -1,0 +1,61 @@
+.faq__list {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.faq__item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  overflow: hidden;
+}
+
+.faq__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  cursor: pointer;
+  list-style: none;
+}
+/* Hide the default disclosure triangle (we draw our own chevron). */
+.faq__summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq__q {
+  font-size: var(--step-1);
+  margin: 0;
+  /* Keep the question on the baseline of the summary row. */
+  font-weight: 700;
+}
+
+.faq__chevron {
+  flex: none;
+  display: inline-flex;
+  color: var(--accent-periwinkle);
+  transition: transform var(--dur-fast) var(--ease);
+}
+.faq__item[open] .faq__chevron {
+  transform: rotate(180deg);
+}
+
+.faq__answer {
+  padding: 0 var(--space-5) var(--space-5);
+}
+.faq__answer > p {
+  font-size: var(--step-0);
+  margin-top: var(--space-3);
+}
+.faq__answer > p:first-child {
+  margin-top: 0;
+}
+
+/* A soft hairline between the question and its opened answer. */
+.faq__item[open] .faq__summary {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--space-4);
+}

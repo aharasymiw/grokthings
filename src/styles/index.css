@@ -1,0 +1,6 @@
+/* Entry stylesheet. Order matters: tokens (variables) → base (resets/behavior)
+   → layout (page scaffolding). Component styles are imported by each component. */
+@import './tokens.css';
+@import './base.css';
+@import './layout.css';
+@import './ui.css';

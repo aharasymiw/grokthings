@@ -1,0 +1,64 @@
+.footer {
+  background: var(--surface-sunken);
+  border-top: 1px solid var(--border);
+  padding-block: var(--space-8);
+}
+
+.footer__inner {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.footer__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--step-1);
+}
+.footer__mark {
+  display: inline-flex;
+  color: var(--accent-amber-ink);
+}
+
+.footer__nav {
+  margin: 0;
+}
+.footer__links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+}
+.footer__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+  padding-block: 0.4rem;
+  border-bottom: 2px solid transparent;
+}
+.footer__links a:hover {
+  color: var(--link-hover);
+  border-bottom-color: color-mix(in srgb, var(--action) 50%, transparent);
+}
+
+.footer__note {
+  font-size: var(--step--1);
+  color: var(--ink-secondary);
+  max-width: 60ch;
+}
+.footer__signoff {
+  font-size: var(--step-1);
+  font-style: italic;
+  max-width: 50ch;
+}
+.footer__legal {
+  font-size: var(--step--1);
+  color: var(--ink-secondary);
+}

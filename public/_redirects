@@ -1,0 +1,3 @@
+# Cloudflare Pages SPA fallback: serve index.html for any unmatched route.
+# https://developers.cloudflare.com/pages/configuration/redirects/
+/*  /index.html  200

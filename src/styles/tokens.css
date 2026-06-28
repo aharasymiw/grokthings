@@ -1,0 +1,182 @@
+/* ===========================================================================
+   tokens.css — the whole design system as CSS custom properties.
+
+   "The Curiosity Notebook — A Calm Lab for Your Brain"
+   Two complete, AA-verified themes (light default, dark via toggle / OS),
+   a CVD-robust accent triad (green + periwinkle + amber), and reader-agency
+   controls (theme / calm mode / reading font) driven by [data-*] on <html>.
+
+   Color rule of the house: meaning is NEVER carried by hue alone — every
+   accent is always paired with a label, a shape, and a position.
+   Amber is FILL ONLY; whenever amber must carry words, --accent-amber-ink
+   is used instead. No pure #000 / #FFF in large fields (halation guard).
+   ======================================================================== */
+
+:root {
+  /* ---- Type families ---------------------------------------------------- */
+  --font-system: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-atkinson: 'Atkinson Hyperlegible', 'Lexend', var(--font-system);
+
+  /* Atkinson Hyperlegible is the default for BODY and headings — the
+     single highest-impact dyslexia win. The reading-font toggle overrides
+     these below. */
+  --font-body: var(--font-atkinson);
+  --font-heading: var(--font-atkinson);
+
+  /* Reader-adjustable rhythm (the "extra spacing" reading mode tweaks these) */
+  --reading-letter: 0.01em;
+  --reading-word: normal;
+  --reading-line: 1.65;
+
+  /* ---- Fluid type scale (min 18px body, everything in rem) -------------- */
+  --step--1: 1rem;        /* 16px — meta/eyebrow, never smaller */
+  --step-0: 1.125rem;     /* 18px — body */
+  --step-1: clamp(1.2rem, 1.1rem + 0.6vw, 1.375rem);  /* lead / subhead */
+  --step-2: 1.25rem;      /* 20px — h3 / card titles */
+  --step-3: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);      /* h2 / section title */
+  --step-4: clamp(2rem, 1.6rem + 2.5vw, 3rem);        /* h1 */
+
+  /* ---- Spacing (4px base: 4 8 12 16 24 32 48 64 96) --------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* ---- Radii (soft, friendly, nothing sharp) --------------------------- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* ---- Layout ---------------------------------------------------------- */
+  --container: 72rem;
+  --container-narrow: 46rem;
+  --header-h: 4.25rem;
+
+  /* ---- Motion (one-shot only; see base.css for reduced-motion) --------- */
+  --dur-fast: 150ms;
+  --dur-med: 280ms;
+  --dur-slow: 600ms;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ====================================================================== */
+  /*  LIGHT THEME (default)                                                  */
+  /* ====================================================================== */
+  --bg: #f6f2e9;              /* warm notebook cream — never glare-white */
+  --surface: #ffffff;          /* small raised cards/inputs only */
+  --surface-sunken: #eae3d2;   /* alternating bands / graph panels */
+  --ink: #22303a;              /* soft blue-charcoal — never pure black */
+  --ink-secondary: #4b5a66;    /* captions, helper text (6.4:1 on cream) */
+  --action: #1c4e80;           /* primary buttons + links (8.6:1 on white) */
+  --on-action: #ffffff;        /* label on --action fill */
+  --link: #1c4e80;
+  --link-hover: #16406a;
+
+  /* CVD-robust accent triad — three separated hue families */
+  --accent-green: #1b6b43;        /* perspective 1 / "Observe" */
+  --accent-periwinkle: #3a45b5;   /* perspective 2 / secondary actions */
+  --accent-amber-ink: #9a4708;    /* perspective 3 — amber AS TEXT (dark) */
+  --accent-amber-fill: #f4c13e;   /* highlighter / sticky fill — FILL ONLY */
+  --on-amber-fill: #22303a;       /* dark ink on amber fill (constant, both themes) */
+
+  --focus: #3a45b5;            /* periwinkle ring — distinct from blue --action */
+
+  --border: rgba(34, 48, 58, 0.16);
+  --border-strong: rgba(34, 48, 58, 0.36);
+  --grid-line: rgba(34, 48, 58, 0.045);   /* decorative graph paper */
+
+  --shadow-1: 0 1px 2px rgba(34, 48, 58, 0.06);
+  --shadow-2: 0 1px 2px rgba(34, 48, 58, 0.06), 0 4px 14px rgba(34, 48, 58, 0.09);
+
+  color-scheme: light;
+}
+
+/* Shared dark-theme declarations, applied to an explicit choice OR to the
+   OS preference when the reader hasn't forced a theme. */
+[data-theme='dark'] {
+  --bg: #141a33;              /* deep indigo — never #000 */
+  --surface: #1e2647;
+  --surface-sunken: #10152a;
+  --ink: #eef1fb;             /* soft off-white — never pure #FFF */
+  --ink-secondary: #bfc6e6;
+  --action: #9dc3f5;
+  --on-action: #141a33;       /* dark label on light-blue fill */
+  --link: #9dc3f5;
+  --link-hover: #c2dbfa;
+
+  --accent-green: #9fd8b4;
+  --accent-periwinkle: #c3b5f5;
+  --accent-amber-ink: #f4cd86;    /* on dark, amber-as-text is light gold */
+  --accent-amber-fill: #f4cd86;
+  --on-amber-fill: #22303a;       /* still dark ink — amber fill is light in both themes */
+
+  --focus: #f4cd86;           /* gold ring — distinct from blue --action */
+
+  --border: rgba(238, 241, 251, 0.16);
+  --border-strong: rgba(238, 241, 251, 0.34);
+  --grid-line: rgba(238, 241, 251, 0.05);
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 16px rgba(0, 0, 0, 0.45);
+
+  color-scheme: dark;
+}
+
+/* Auto mode (no manual choice) follows the operating system. */
+@media (prefers-color-scheme: dark) {
+  [data-theme='auto'] {
+    --bg: #141a33;
+    --surface: #1e2647;
+    --surface-sunken: #10152a;
+    --ink: #eef1fb;
+    --ink-secondary: #bfc6e6;
+    --action: #9dc3f5;
+    --on-action: #141a33;
+    --link: #9dc3f5;
+    --link-hover: #c2dbfa;
+
+    --accent-green: #9fd8b4;
+    --accent-periwinkle: #c3b5f5;
+    --accent-amber-ink: #f4cd86;
+    --accent-amber-fill: #f4cd86;
+    --on-amber-fill: #22303a;
+
+    --focus: #f4cd86;
+
+    --border: rgba(238, 241, 251, 0.16);
+    --border-strong: rgba(238, 241, 251, 0.34);
+    --grid-line: rgba(238, 241, 251, 0.05);
+
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-2: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 16px rgba(0, 0, 0, 0.45);
+
+    color-scheme: dark;
+  }
+}
+
+/* ========================================================================= */
+/*  READING-FONT TOGGLE — reader agency over typography                      */
+/* ========================================================================= */
+[data-font='system'] {
+  --font-body: var(--font-system);
+  --font-heading: var(--font-system);
+}
+
+[data-font='opendyslexic'] {
+  --font-body: 'OpenDyslexic', var(--font-atkinson);
+  --font-heading: 'OpenDyslexic', var(--font-atkinson);
+}
+
+/* "Extra spacing" keeps Atkinson but opens up the rhythm. */
+[data-font='spacing'] {
+  --reading-letter: 0.06em;
+  --reading-word: 0.16em;
+  --reading-line: 1.95;
+}

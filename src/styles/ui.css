@@ -1,0 +1,119 @@
+/* ===========================================================================
+   ui.css — shared, reusable primitives: buttons, cards, chips, reveal,
+   perspective channels. Component CSS files handle their own layout.
+   ======================================================================== */
+
+/* --- Buttons ------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.3rem;
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--step-0);
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--dur-fast) var(--ease),
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
+}
+
+.btn:active {
+  /* A small paper-press depression. */
+  transform: translateY(1px);
+}
+
+.btn--primary {
+  background: var(--action);
+  color: var(--on-action);
+}
+.btn--primary:hover {
+  background: var(--link-hover);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--action);
+  border-color: currentColor;
+}
+.btn--secondary:hover {
+  background: color-mix(in srgb, var(--action) 12%, transparent);
+}
+
+.btn svg {
+  flex: none;
+}
+
+/* --- Cards -------------------------------------------------------------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  padding: var(--space-5);
+}
+
+/* --- Chips -------------------------------------------------------------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--step--1);
+  font-weight: 600;
+}
+
+/* "Coming soon" markers: clearly labelled, non-interactive, never disabled-looking. */
+.chip--soon {
+  background: var(--surface-sunken);
+  color: var(--ink-secondary);
+  border: 1px dashed var(--border-strong);
+}
+.chip--soon .chip__note {
+  font-weight: 400;
+}
+
+/* --- Perspective channels: hue is ALWAYS backed by label + shape + position - */
+.pchannel--green {
+  --channel: var(--accent-green);
+}
+.pchannel--periwinkle {
+  --channel: var(--accent-periwinkle);
+}
+.pchannel--amber {
+  /* amber AS TEXT uses the dark amber-ink, never the fill swatch */
+  --channel: var(--accent-amber-ink);
+}
+
+/* --- Motion-safe reveal (gated by useReveal, which respects reduced motion) - */
+.reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity var(--dur-med) var(--ease),
+    transform var(--dur-med) var(--ease);
+}
+.reveal--in {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fade-in {
+  animation: fade-in var(--dur-fast) var(--ease) both;
+}

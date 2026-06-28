@@ -1,0 +1,176 @@
+/* ===========================================================================
+   base.css — reset + accessible foundations
+   Depends only on token NAMES defined in tokens.css (values come from the
+   design spec). Everything here is about behavior: focus, motion, spacing,
+   tap targets, and reduced-motion safety.
+   ======================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  /* Smooth in-page jumps, but never for people who asked for less motion. */
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100svh;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  /* Reader-adjustable rhythm (see the "extra spacing" reading mode). */
+  line-height: var(--reading-line);
+  letter-spacing: var(--reading-letter);
+  word-spacing: var(--reading-word);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings: tighter leading, friendlier wrapping. */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  line-height: 1.15;
+  font-weight: 700;
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+p, li {
+  text-wrap: pretty;
+  max-width: 68ch; /* comfortable measure for sustained reading */
+}
+
+a {
+  color: var(--link);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: max(1px, 0.06em);
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+img, svg, picture {
+  max-width: 100%;
+  display: block;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+ul, ol {
+  padding-left: 1.25em;
+}
+
+:where(button, a, summary, [role="button"]) {
+  cursor: pointer;
+}
+
+/* --- Focus: always visible, never clipped ------------------------------- */
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* Remove the default outline only when we are confident a visible ring is
+   shown elsewhere (focus-visible covers keyboard users). */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Anchored sections shouldn't hide under the sticky header. */
+:target {
+  scroll-margin-top: calc(var(--header-h, 4rem) + var(--space-4));
+}
+
+::selection {
+  /* Highlighter feel — amber fill with dark ink reads in both themes. */
+  background: var(--accent-amber-fill);
+  color: var(--on-amber-fill);
+}
+
+/* --- Skip link ---------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  left: var(--space-3);
+  top: var(--space-3);
+  z-index: 100;
+  padding: 0.75rem 1.1rem;
+  background: var(--surface);
+  color: var(--ink);
+  border: 2px solid var(--action);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: var(--shadow-2);
+  transform: translateY(-150%);
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* --- Screen-reader-only utility ----------------------------------------- */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Generous, consistent tap targets for touch + motor accessibility. */
+:where(a, button, summary, [role="button"], input, select) {
+  min-height: 44px;
+}
+
+/* --- Respect reduced-motion globally ------------------------------------ */
+/* Two triggers, identical effect: the OS preference, and our manual Calm mode
+   (data-calm="true") for the many ND readers who never set the OS flag.
+   Motion collapses to its final state — nothing loops, drifts, or flashes. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+[data-calm='true'] {
+  scroll-behavior: auto;
+}
+
+[data-calm='true'] *,
+[data-calm='true'] *::before,
+[data-calm='true'] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}

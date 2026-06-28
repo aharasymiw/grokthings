@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Grok Things">
+  <rect width="32" height="32" rx="8" fill="#2f3a86" />
+  <circle cx="16" cy="13.5" r="7.5" fill="#f4c13e" />
+  <rect x="12.4" y="20" width="7.2" height="2.3" rx="1.1" fill="#f6f2e9" />
+  <rect x="13.4" y="22.8" width="5.2" height="2" rx="1" fill="#f6f2e9" />
+  <path d="M16 9v4.2M13.6 11.4l2.4 1.8 2.4-1.8" fill="none" stroke="#2f3a86"
+        stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

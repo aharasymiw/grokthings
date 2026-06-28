@@ -1,0 +1,240 @@
+{
+  "chosenDirectionName": "The Curiosity Notebook \u2014 A Calm Lab for Your Brain",
+  "rationale": "I took curiosity-lab (The Curiosity Notebook) as the spine because, across all three judge lenses, it was the most defensible \"safe for the brain that hasn't configured anything\": Atkinson Hyperlegible for BODY (not just headings), a warm low-glare cream surface, a native details/summary FAQ that survives JS-off, the reduced-motion static state authored as the SAFE DEFAULT, and the strongest curiosity-ignition (Observe to Question to Try to Keep). It also won two of three lenses outright or tied the top. Onto that spine I grafted the highest-value ideas the judges flagged: (1) the literal Minsky mechanic from constellation-minsky \u2014 one subject at center, several perspective markers around it, each a real keyboard-operable button, \"no perspective ranked above another\" \u2014 but rebuilt as a calm ARIA tablist/radiogroup with ZERO ambient/looping motion (the single biggest red flag against constellation was default-on twinkle/drift and a dark default, so I dropped both). (2) garden-growth's deliberately CVD-robust accent triad (green + blue-violet/periwinkle + warm amber) replaces curiosity-lab's blue/teal/violet trio, which judges flagged as lightness-only-distinct and therefore protan/deutan-risky; this triad spans three separated hue families and is reinforced by shape, label, and position every time. (3) cozy-tactile's microcopy discipline becomes the house style: ban \"just/simply/obviously/easy\", name spoons/low-battery days as allowed, and give plain-words-first then the proper term in parentheses. (4) The user-agency toggle suite from constellation/garden \u2014 manual Calm Mode (forces motion off regardless of OS, since most ND users never set the OS flag), a Reading-font toggle (System / Atkinson / extra-spacing / OpenDyslexic), and a Theme toggle honoring prefers-color-scheme \u2014 all persisted in localStorage. (5) garden's Save-Data webfont skip and native details/summary FAQ for resilience. I also dropped curiosity-lab's \"lab as surveillance\" risk by reframing self-study as the reader's own curiosity, never \"tracking/measuring your brain.\" Both a light (Paper Cream, default-via-prefers) and dark (Deep Notebook indigo) palette ship; neither uses pure #000 or #FFF in large fields. Every accent that ever carries text meets AA against its actual surface; amber is a FILL-only guardrail.",
+  "designTokens": {
+    "lightPalette": [
+      {
+        "token": "--bg",
+        "hex": "#F6F2E9",
+        "usage": "Page canvas \u2014 warm low-glare notebook cream, never glare-white. Carries an optional aria-hidden graph-grid at ~3% contrast (decoration only). Primary ink #22303A reads 12.1:1."
+      },
+      {
+        "token": "--surface",
+        "hex": "#FFFFFF",
+        "usage": "Raised cards, FAQ panels, form fields ONLY \u2014 small clipped index-card surfaces. Never a full-bleed section background (would reintroduce glare). Ink 13.5:1."
+      },
+      {
+        "token": "--surface-sunken",
+        "hex": "#EAE3D2",
+        "usage": "Alternating section bands and the graph-paper panels behind perspective clusters; chunks the page into calm scannable spreads. Ink 10.6:1."
+      },
+      {
+        "token": "--ink",
+        "hex": "#22303A",
+        "usage": "Primary text, headings \u2014 soft blue-charcoal fountain-pen ink, never pure black. 12.1:1 on cream, 13.5:1 on white, 10.6:1 on sunken."
+      },
+      {
+        "token": "--ink-secondary",
+        "hex": "#4B5A66",
+        "usage": "Captions, helper text, margin notes, metadata. 6.4:1 on cream \u2014 clears AA body everywhere it appears."
+      },
+      {
+        "token": "--action",
+        "hex": "#1C4E80",
+        "usage": "Primary buttons (white label, 8.6:1) and links. As link text on cream 7.7:1; links always underlined, never color-only."
+      },
+      {
+        "token": "--accent-green",
+        "hex": "#1B6B43",
+        "usage": "Minsky perspective channel 1 + 'Observe' step marker. 6.2:1 on cream as text/icon; white label on green fill 6.5:1. Always paired with a labeled shape."
+      },
+      {
+        "token": "--accent-periwinkle",
+        "hex": "#3A45B5",
+        "usage": "Minsky perspective channel 2 + focus ring + secondary buttons. Blue-violet stays clearly separate from green for protan/deutan. 7.3:1 as text on cream; 3px ring clears the 3:1 UI bar with wide margin."
+      },
+      {
+        "token": "--accent-amber-ink",
+        "hex": "#9A4708",
+        "usage": "Minsky perspective channel 3 + 'new' tags when set as TEXT. Warm dark amber gives a third CVD-separable hue. 6.4:1 on white / 6.0:1 on cream. Use this (not the fill swatch) whenever amber must carry words."
+      },
+      {
+        "token": "--accent-amber-fill",
+        "hex": "#F4C13E",
+        "usage": "Sticky-note fills, highlighter sweep behind key phrases, pinned callouts \u2014 FILL ONLY, always with --ink text on top (8.1:1). Guardrail: never small amber text on a light background."
+      },
+      {
+        "token": "--focus",
+        "hex": "#3A45B5",
+        "usage": "3px focus-visible ring at 2px offset on every interactive element; lands on cream/white/sunken at >=7:1, and is a different hue from the blue --action fill so the ring never disappears on a same-color button."
+      }
+    ],
+    "darkPalette": [
+      {
+        "token": "--bg",
+        "hex": "#141A33",
+        "usage": "Page canvas (dark theme) \u2014 deep indigo, never #000, to avoid halation. Off-white ink #EEF1FB reads ~15:1. Dark is offered via toggle and prefers-color-scheme, never forced."
+      },
+      {
+        "token": "--surface",
+        "hex": "#1E2647",
+        "usage": "Raised cards, FAQ panels, form fields \u2014 one gentle step up from the canvas. Off-white ink ~13:1."
+      },
+      {
+        "token": "--surface-sunken",
+        "hex": "#10152A",
+        "usage": "Alternating bands / panels behind perspective clusters; one step down from canvas. Ink ~16:1."
+      },
+      {
+        "token": "--ink",
+        "hex": "#EEF1FB",
+        "usage": "Primary text, headings \u2014 soft off-white, never pure #FFF, to cut glare on dark. ~15:1 on canvas."
+      },
+      {
+        "token": "--ink-secondary",
+        "hex": "#BFC6E6",
+        "usage": "Captions, helper text, metadata. ~9.5:1 on canvas \u2014 well above AA body."
+      },
+      {
+        "token": "--action",
+        "hex": "#9DC3F5",
+        "usage": "Primary button fill with dark --ink (#141A33) label (~9:1); also link text on canvas (~8:1). Light enough to read as the warm-blue 'primary' on dark."
+      },
+      {
+        "token": "--accent-green",
+        "hex": "#9FD8B4",
+        "usage": "Minsky perspective channel 1 + 'Observe' marker on dark. ~9:1 as text/icon on canvas. Paired with labeled shape."
+      },
+      {
+        "token": "--accent-periwinkle",
+        "hex": "#C3B5F5",
+        "usage": "Minsky perspective channel 2 + secondary actions on dark. Light lavender, ~9.5:1 on canvas; clearly hue-separate from green."
+      },
+      {
+        "token": "--accent-amber",
+        "hex": "#F4CD86",
+        "usage": "Minsky perspective channel 3 + warm highlight on dark, ~12:1 on canvas. On dark it is light enough to carry text safely; still prefer it as fill behind --ink in callouts for visual consistency."
+      },
+      {
+        "token": "--focus",
+        "hex": "#F4CD86",
+        "usage": "3px focus-visible ring at 2px offset on dark. Gold ring is a different hue from the blue --action button, so focus is always visible \u2014 including on same-color buttons. ~12:1 on canvas/surfaces."
+      }
+    ],
+    "radii": "--radius-sm 6px (chips, tags, inputs), --radius-md 12px (cards, FAQ panels, buttons), --radius-lg 20px (hero/feature panels). Soft, rounded, friendly \u2014 nothing sharp; consistent 2px focus-offset gap respects radius.",
+    "spacingScale": "4px base unit, modular: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96. Generous by default \u2014 section vertical padding 64\u201396px, intra-card gaps 16\u201324px, paragraph spacing 1em+. Body measure capped at 60\u201366ch; touch targets >=44x44px with >=8px spacing between adjacent targets.",
+    "shadowStyle": "Soft, low, single-layer paper-lift shadows \u2014 no harsh or neon glows. Light: 0 1px 2px rgba(34,48,58,.06), 0 4px 12px rgba(34,48,58,.08). Dark: 0 1px 2px rgba(0,0,0,.4), 0 6px 16px rgba(0,0,0,.45). Elevation is also signaled by the surface-token step (not shadow alone), so it reads in forced-colors/high-contrast mode."
+  },
+  "typography": {
+    "headingStack": "'Atkinson Hyperlegible', 'Lexend', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif \u2014 Bold 700 for headings.",
+    "bodyStack": "'Atkinson Hyperlegible', 'Lexend', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif \u2014 Regular 400 for body; this same family is the BODY default (not just headings), which is the single highest-impact dyslexia win since most reading is body copy.",
+    "scale": "Fluid type via clamp, min 18px body. Body 1.125rem (18px), small/meta 1rem (16px, used sparingly and never below this), h3 1.25rem, h2 clamp(1.5rem,1.2rem+1.5vw,2rem), h1 clamp(2rem,1.6rem+2.5vw,3rem). Line-height 1.65 body / 1.25 headings. Measure 60\u201366ch. Letter-spacing slightly open on headings (0.01em). Left-aligned ragged-right ALWAYS \u2014 never justified (justification creates rivers that disrupt tracking). Everything in rem so it scales with browser zoom to 200%+ without horizontal scroll.",
+    "rationale": "Atkinson Hyperlegible was designed by the Braille Institute specifically to disambiguate the letterforms that trip dyslexic and low-vision readers most \u2014 I/l/1/|, b/d/p/q, rn/m, 0/O \u2014 with open apertures and a tall x-height. Setting it for BODY (the judges' top graft) means that disambiguation covers the bulk of reading, not only headings. Lexend is a research-associated reading-proficiency fallback, so even the no-webfont path is accessibility-forward. A Reading-font toggle (System / Atkinson / extra-spacing / OpenDyslexic, saved to localStorage) lets each reader override our default; any 'handwritten/doodle' look is decorative inline SVG only \u2014 real content is never set in a script face. Webfont strategy: self-host exactly two woff2 (Regular 400, Bold 700), Latin subset, <link rel=preload> on Regular, font-display: swap, with a metric-compatible system fallback so the page is fully readable if the font never loads; under Save-Data / prefers-reduced-data we skip the webfont entirely and fall through to the system stack. No icon fonts \u2014 icons are inline SVG with <title>. Total font payload ~60\u201380KB."
+  },
+  "sections": [
+    {
+      "id": "skip-and-topbar",
+      "title": "Skip link + calm top bar with controls",
+      "purpose": "Give keyboard/AT users an immediate escape hatch, anchor navigation, and surface the three ND-affirming controls before any content is read.",
+      "treatment": "First focusable element is a visible-on-focus skip-to-content link. Low top bar on --surface: doodled flask/lightbulb wordmark (inline SVG, accessible name 'Grok Things, home') at left; nav as notebook index tabs (About, How it works, Questions, Community) using real <a> links with aria-current on the active section. At right, three real <button> controls with persistent text labels + icon: Theme (Light/Dark, honors prefers-color-scheme, toggle persisted), Calm mode (forces reduced motion regardless of OS, persisted), Reading font (System / Atkinson / extra-spacing / OpenDyslexic, persisted). Two future tabs ('Field Notes', 'The Lab') appear as clearly-labeled non-interactive 'coming soon' chips \u2014 given explicit aria text, kept OUT of the focus order, and still meeting 3:1 contrast so they never read as broken/disabled.",
+      "keyContent": "Wordmark: Grok Things. Nav: About \u00b7 How it works \u00b7 Questions \u00b7 Community. Controls labeled in words: 'Theme', 'Calm mode', 'Reading font'. Coming-soon chips: 'Field Notes \u2014 blog, coming soon' and 'The Lab \u2014 interactive tools, coming soon'."
+    },
+    {
+      "id": "hero",
+      "title": "Hero \u2014 grok, defined three ways at once",
+      "purpose": "Teach what grokking means with zero jargon gate, and enact Minsky in miniature: the definition arrives as three short framings around one word, not a paragraph to decode.",
+      "treatment": "Open-notebook spread on --bg. The word 'grok' set large in Atkinson Bold, centered, with a hand-drawn underline that draws itself once (~600ms) on load \u2014 and is simply already-drawn under reduced motion / Calm mode. Three short margin notes with small doodled arrows point inward, each a different angle (rendered as a semantic list so AT reads all three). One plain-language restatement sits below. A single primary --action button; a secondary 'Watch on YouTube' link. Generous whitespace, no carousel, no autoplay.",
+      "keyContent": "H1: 'What if your software actually fit your brain?' Three margin framings \u2014 (1) 'grok \u2014 a word Robert Heinlein coined,' (2) 'to understand something so deeply it becomes part of you,' (3) '\u2026including understanding your own brain.' Restatement: 'Grokking means really getting something, down in your bones. We start with the most interesting thing you'll ever study \u2014 you.' Primary button: 'Start grokking your brain'. Secondary: 'Watch on YouTube'. Reassurance line under the buttons: 'No coding experience needed. Curiosity is the only prerequisite, and you already brought it.'"
+    },
+    {
+      "id": "minsky-panel",
+      "title": "Signature panel \u2014 'One idea, seen a few ways'",
+      "purpose": "Make Minsky's multiple-perspectives principle a literal, keyboard-operable mechanic \u2014 the page's load-bearing interaction \u2014 and show it BEFORE explaining it.",
+      "treatment": "One subject sits at the center of a sunken graph-panel; three perspective markers sit around it, each a real <button> in an ARIA tablist (roving tabindex: Left/Right or Up/Down arrows move, Enter/Space selects, Home/End jump; selected tab has aria-selected, its panel is aria-labelledby the tab). Selecting a marker cross-fades in that perspective's card (<=150ms opacity only; instant under reduced motion). Each marker uses a SEPARATE channel: green ('the felt experience'), periwinkle ('how it works'), amber-ink ('a tiny real example') \u2014 distinguished by hue + a distinct icon shape + a text label + position, never color alone. A quiet line states this is the channel's whole method, not a gimmick. No looping motion, no parallax, nothing hover-only.",
+      "keyContent": "Heading: 'One idea, seen a few ways.' Center subject example: 'A reminder that actually works for you.' Green card (felt): 'How it feels \u2014 a nudge that arrives the way YOUR attention needs it, not a guilt-trip you learn to ignore.' Periwinkle card (how it works): 'How it works \u2014 a trigger (a time, a place, a tap) hands off to an action (a message, a sound, a note). That handoff is the whole machine.' Amber card (example): 'For instance \u2014 when you get home (location), your phone quietly shows tonight's one thing. Just one.' Footer line: 'This is the whole method: look at one thing from a few angles until at least one of them clicks for your wiring.'"
+    },
+    {
+      "id": "about",
+      "title": "About the channel + mission",
+      "purpose": "Say who Grok Things is for and what it promises, in warm anti-deficit language, with the mission pinned as a scannable callout.",
+      "treatment": "Two-column 'notebook page' band on --surface-sunken: warm intro copy at left; the mission pinned as an amber-FILL index card (--ink text, 8.1:1) at right. One <h2>, real paragraphs, real lists. 'Different minds, different care' framing borrowed from garden to validate varied wiring without deficit language.",
+      "keyContent": "H2: 'Who this is for.' Body: 'Grok Things is a YouTube channel for brains that don't come standard. We're for ADHD, autistic, dyslexic, and otherwise differently-wired folks who've spent years bending themselves to fit software that was never built for them. Here we flip it: first you get curious about how your own mind actually works, then you make small, personal tools that fit it. No computer-science degree, no gatekeeping \u2014 and no day where you're behind. Some days have more spoons than others, and that's allowed.' Pinned mission card: 'Our mission: help differently-wired people understand their own minds well enough to build personal software shaped around them \u2014 no coding required. We don't teach you to think like a computer; we help you teach the computer to think a little more like you.'"
+    },
+    {
+      "id": "how-it-works",
+      "title": "How it works \u2014 Observe, Question, Try, Keep",
+      "purpose": "Replace any 'grind funnel' with a calm, curiosity-framed four-step loop that reassures rather than pressures.",
+      "treatment": "Four numbered cards on --surface, each with a distinct icon shape and a one-line plain description. Framed as friendly experiment steps, not a productivity ladder. Self-study is framed strictly as the reader's own curiosity \u2014 no 'measure/track/surveil your brain' language. Cards reveal with a one-shot staggered 6px-drift+fade on scroll (IntersectionObserver); under reduced motion / Calm mode they appear instantly in final position.",
+      "keyContent": "H2: 'How a Grok Things build goes.' 1. Observe \u2014 'Notice one moment your day snags. That snag is the whole assignment.' 2. Question \u2014 'Ask what you actually wish happened instead. Plain words, no tech.' 3. Try \u2014 'Pick a friendly tool and make the smallest version that helps.' 4. Keep \u2014 'Keep what fits, toss what doesn't. The tool serves you, not the other way around.' Footer line: 'You can stop after any step and come back later. There's no wrong pace.'"
+    },
+    {
+      "id": "faq",
+      "title": "FAQ \u2014 a notebook of questions",
+      "purpose": "Answer the real first-visit anxieties, leading each with the reassurance, and model Minsky by giving answers in more than one framing.",
+      "treatment": "Accordion built from native <details>/<summary> so it works fully with JavaScript disabled and inherits correct keyboard/ARIA semantics for free. One open at a time is optional, not enforced. summary is a real heading-level control with a rotating chevron (rotation removed under reduced motion). Each answer leads with the implicit anxiety answered first, then offers plain words + (where useful) a metaphor + one concrete example.",
+      "keyContent": "Six Q/A pairs \u2014 full text in the content outline. Section intro line: 'Short answers up top; open any card to go deeper.'"
+    },
+    {
+      "id": "community",
+      "title": "Community / contact \u2014 'Join the lab'",
+      "purpose": "Offer low-pressure ways to connect and pre-stage phase-three voting/submissions without overpromising.",
+      "treatment": "Pinboard-style band. Real <a> to YouTube subscribe, a plain-text contact email (mailto), and an optional newsletter field with a persistent visible <label>, plain-language helper text, and error text conveyed by words + icon (never color alone). A 'what should we grok next?' textarea is a genuine phase-one input and the visual seed of phase-three topic voting. An explicit 'no wrong way to show up' note. On dark theme this band uses --surface with periwinkle/green accents (no low-contrast warm-on-warm).",
+      "keyContent": "H2: 'Come join the lab.' Body: 'Subscribe on YouTube, say hi by email, or just lurk happily in the back \u2014 there's no wrong way to show up, and you can leave whenever your battery runs low.' Newsletter label: 'Email (optional) \u2014 workshop notes, no more than once a month.' Suggestion prompt: 'What does your brain wish existed? Tell us what to grok next \u2014 your idea might become the next thing we build together.' Buttons: 'Subscribe on YouTube', 'Send a hello'."
+    },
+    {
+      "id": "footer",
+      "title": "Footer \u2014 lab notes colophon",
+      "purpose": "Close quietly with resilience promises, the accessibility statement, and a gentle ND-affirming sign-off.",
+      "treatment": "Low-key, generously spaced footer on --surface-sunken (light) / --surface (dark). Real link list, no dense link farm, no social-pressure widgets. States the commitments in plain words.",
+      "keyContent": "Links: About \u00b7 How it works \u00b7 Questions \u00b7 Community \u00b7 Accessibility statement \u00b7 YouTube \u00b7 Contact. Notes: 'This site respects your reduced-motion and system-font settings, and works without JavaScript.' Sign-off: 'Built for the brain you actually have. Come back any time \u2014 the notebook will keep filling up.'"
+    }
+  ],
+  "interactions": [
+    "DEFAULT IS THE STILL STATE: the reduced-motion/static end-state is authored as the safe baseline so nothing moves if a preference can't be read. Motion is added only on top, and only as one-shot, slow, non-looping easing. There is NO ambient/looping motion anywhere \u2014 no twinkle, no drift, no parallax scene, no autoplay media, nothing that flashes.",
+    "Manual Calm mode toggle in the top bar forces the reduced-motion path regardless of OS setting, persisted in localStorage \u2014 because most ND visitors never set the OS flag. Calm mode and prefers-reduced-motion: reduce both collapse every animation to its final state and remove (not merely pause) any drift.",
+    "Hero underline draws itself once over ~600ms ease-out on load; under reduced motion / Calm mode it renders already-complete. The underline is decorative SVG, aria-hidden, and never loops.",
+    "Minsky perspective switcher (the signature interaction) is a real ARIA tablist with roving tabindex: arrow keys move between the three markers, Enter/Space selects, Home/End jump to first/last; aria-selected on the active tab, each panel aria-labelledby its tab. Switching cross-fades the perspective card with opacity only (<=150ms), and shows instantly under reduced motion. Every perspective is reachable and announced by keyboard \u2014 never hover-only.",
+    "FAQ uses native <details>/<summary>: keyboard-operable and JS-free by construction. The disclosure chevron rotates on open in the default state and stays static under reduced motion; panel height transitions are removed under reduced motion (content just appears).",
+    "How-it-works and section cards reveal with a one-shot 6px-drift + fade, gently staggered via IntersectionObserver; fully removed under reduced motion (final position, no fade or a single <=150ms opacity at most). No motion ever sits underneath running body text long enough to disrupt tracking.",
+    "Buttons, links, and summaries have an identical focus-visible and hover treatment: a 3px ring (--focus) at 2px offset plus a 1\u20132px paper-press depression on active. Focus is never conveyed by color change alone, and the ring hue differs from same-color button fills so it can't disappear.",
+    "Theme and Reading-font toggles apply instantly with no animated flash, persist to localStorage, and respect prefers-color-scheme as the initial default. Switching theme/font never causes layout shift (metric-compatible fallbacks, reserved space).",
+    "No interaction requires a pointer; nothing important is hidden behind hover; all decorative SVG (doodles, grid, arrows) is aria-hidden and non-interactive."
+  ],
+  "accessibilityChecklist": [
+    "Every text/background pair computed against WCAG with the relative-luminance formula and verified >= AA: body 6.0:1\u201316:1, large/UI elements clear 3:1 with margin, in BOTH light and dark themes. No pair left to guesswork.",
+    "No pure #000 or #FFF in large fields: warm cream / deep indigo surfaces and soft ink, to reduce halation for astigmatic, migraine-prone, and dyslexic readers. #FFFFFF appears only on small raised cards/inputs, never full-bleed.",
+    "Colorblind-safe accent logic: three perspective channels span three separated hue families (green + blue-violet/periwinkle + warm amber), deliberately avoiding any green-vs-red signaling; meaning is ALWAYS reinforced by text label + distinct icon shape + position, never hue alone. Verified in a deuteranopia/protanopia/tritanopia simulator.",
+    "Amber guardrail: --accent-amber-fill (#F4C13E) is FILL ONLY, always under --ink text (8.1:1); whenever amber must carry words, the dark --accent-amber-ink (#9A4708) is used instead. No small amber text on light, ever.",
+    "Semantic HTML5 throughout: one <h1>, a logically ordered heading outline, header/nav/main/section/footer landmarks, real <ul>/<ol> lists, real <button>/<a>, and a button/summary-driven FAQ. No div-soup; ARIA used only where native semantics fall short (aria-current, aria-selected, aria-expanded via details, aria-hidden on decoration).",
+    "Full keyboard operability: skip-to-content link is the first focusable element; logical tab order; visible 3px focus ring at 2px offset on every interactive element; hover and focus states are identical; roving-tabindex tablist supports arrows/Enter/Space/Home/End. To be verified in NVDA + VoiceOver, not just by code inspection.",
+    "prefers-reduced-motion fully honored AND a manual Calm mode toggle forces it regardless of OS. Static end-state is the authored default; ambient motion is removed (not paused); nothing loops, parallaxes, autoplays, or flashes (zero flashes, well under 3/sec).",
+    "Dyslexia-forward type: Atkinson Hyperlegible for BODY and headings, 18px+ base in rem, 1.65 line-height, 60\u201366ch measure, left-aligned never justified, open letter-spacing on headings, plus a Reading-font toggle (System / Atkinson / extra-spacing / OpenDyslexic) saved to localStorage.",
+    "Works with JavaScript disabled: content, navigation, and the native <details>/<summary> FAQ are fully usable; the Minsky panel degrades to all three perspective cards shown stacked. Page is also readable if the webfont fails (metric-compatible system fallback) and skips the webfont under Save-Data / prefers-reduced-data.",
+    "Reflow verified: no horizontal scroll at 200% and 400% zoom in BOTH themes; honors OS font-size, font substitution, and forced-colors/high-contrast mode (elevation signaled by surface step, not shadow alone).",
+    "Touch/click targets >= 44x44px with >= 8px spacing; no hover-only content; forms have persistent visible labels and plain-language helper + error text conveyed by words + icon, not color.",
+    "Decorative textures (graph grid, doodles, arrows) are aria-hidden and kept at low enough opacity that effective text contrast over the composite still passes \u2014 verified over the actual textured background, not the flat swatch.",
+    "Two complete, equally-tested AA themes (light default-via-prefers, dark) with a manual toggle; dark is never forced. A linked Accessibility Statement and a visible 'respects reduced motion + your system font, works without JavaScript' note in the footer.",
+    "Coming-soon nav chips are non-interactive, removed from focus order, given explicit accessible text, and still meet 3:1 so they never read as broken/disabled to AT or low-vision users."
+  ],
+  "contentOutline": {
+    "grokkingDefinition": "To grok something is to understand it so completely that it becomes part of you \u2014 not facts you memorized, but knowing it down in your bones. Robert Heinlein coined the word, and the most rewarding thing you'll ever grok is your own brain. Once you really understand how your mind works, you can build small software shaped around it \u2014 no coding required.",
+    "missionStatement": "Grok Things helps differently-wired people understand how their own minds actually work, then build small, personal software shaped around that understanding \u2014 with no coding experience required. We don't teach you to think like a computer; we help you teach the computer to think a little more like you. ADHD, autistic, dyslexic, or simply wired your own way: you belong here, exactly as you are.",
+    "faqs": [
+      {
+        "q": "How do I start learning?",
+        "a": "Start tiny \u2014 pick one moment in your day that snags, and get curious about it. That's the whole first step, and you've basically already done it by being here. Plain words: notice a frustration, describe what you wish happened instead, and watch one episode that touches it. Think of it like keeping a little field notebook for your own brain. For example: 'every evening I forget the one thing I meant to do' is a perfect, complete starting point \u2014 we build from exactly that kind of sentence. You can go as slowly as you like and come back whenever your energy is there."
+      },
+      {
+        "q": "What tools do you recommend?",
+        "a": "Friendly, no-code and low-code tools that do the heavy lifting for you \u2014 the kind where you describe what you want in plain language and the tool builds the machinery. We lean on things like your phone's built-in Shortcuts (little automations) and approachable visual builders and AI assistants that turn a sentence into a working tool. We always show the tool on screen, name it in plain words first and its proper name in parentheses, and never assume you've used it before. You don't need to choose a tool today; each episode walks you to the right one for that build, one calm step at a time."
+      },
+      {
+        "q": "Do I need coding experience?",
+        "a": "No \u2014 not one line, not a little, not eventually. If you can describe what would make your day easier in your own words, you can build it here. We start from your real frustrations and use tools that carry the technical part, so the only thing you bring is curiosity about your own brain \u2014 and you already brought that. Coding is genuinely not the prerequisite; understanding what you actually need is, and no one knows that better than you."
+      },
+      {
+        "q": "How does the channel handle different learning styles?",
+        "a": "By never handing you one rigid 'right way.' Every idea on Grok Things is shown from more than one angle \u2014 a plain-language explanation, a quick visual, a relatable metaphor, and one concrete example \u2014 so at least one of them clicks for your particular wiring. This is on purpose: real understanding (the philosopher Marvin Minsky called it seeing a thing from several sides at once) is built from a few perspectives, not handed over in a single take. Different minds need different care, and the same is true of tools \u2014 so we make room for yours and invite you to take whichever angle lands."
+      },
+      {
+        "q": "What if I run out of energy partway through?",
+        "a": "That's completely allowed, and the site is built for it. Some days have fewer spoons than others, and stopping is not falling behind \u2014 there's no streak to break and no clock counting down. Every build breaks into small steps you can pause after and return to later; lurking quietly is a perfectly good way to take part. Come back when your battery's charged. The notebook will still be here."
+      },
+      {
+        "q": "Is this only for people with a diagnosis?",
+        "a": "No. Grok Things is for anyone whose brain doesn't come off the assembly line \u2014 ADHD, autistic, dyslexic, or simply wired your own way \u2014 and you don't need a label, a diagnosis, or anyone's permission to be here. If software has ever felt like it was built for a brain that isn't yours, you're in the right place. We describe wiring, not deficits: nothing about how you think needs fixing before you're welcome."
+      }
+    ]
+  },
+  "futurePhaseNotes": "The notebook metaphor and component kit are deliberately under-built so phases two and three drop in without a redesign. Reserved, pre-branded homes already exist: the top bar ships two clearly-labeled, non-interactive 'coming soon' chips \u2014 'Field Notes' (blog) and 'The Lab' (app) \u2014 and the community band's 'what should we grok next?' input is the visual and structural seed of phase-three voting. PHASE TWO (blog) becomes 'Field Notes': dated entries reuse the existing card and accordion components verbatim, and every post inherits the Minsky multi-framing schema (TL;DR + deep dive + watch-the-video + try-it) rather than one linear wall of text \u2014 same visual language, zero new patterns. PHASE THREE (the app) becomes 'The Lab': topic voting reads as 'help us decide what to grok next' built directly on the suggestion input already shipped; community submissions add new perspective cards to a shared board using the same tablist/perspective-card component; interactive resources live inside expandable panels that reuse the FAQ details/summary and the perspective-switcher. The whole system is just paper/ink surfaces, four AA-checked accent tokens, cards, sticky-note fills, accordions, and the perspective tablist \u2014 all defined as CSS custom properties and a small set of React components from day one, so the accessibility, colorblind-safety, dual-theme, and reduced-motion guarantees carry forward unchanged. The toggle + localStorage preferences layer (theme, Calm mode, Reading font) is also reusable as-is, so later phases inherit the same ND-affirming agency rather than re-deriving it. Build note for phase one: keep React/JS minimal, self-host two woff2 weights, ship the static reduced-motion state as the default, and verify NVDA/VoiceOver on the perspective tablist before launch."
+}

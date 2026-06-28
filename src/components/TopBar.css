@@ -1,0 +1,136 @@
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3) var(--space-5);
+  flex-wrap: wrap;
+  min-height: var(--header-h);
+  padding-block: var(--space-2);
+}
+
+/* --- Brand -------------------------------------------------------------- */
+.topbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--step-1);
+  flex: none;
+}
+.topbar__brand:hover {
+  color: var(--ink);
+}
+.topbar__brandmark {
+  display: inline-flex;
+  color: var(--accent-amber-ink);
+}
+
+/* --- Nav ---------------------------------------------------------------- */
+.topbar__nav {
+  flex: 1 1 auto;
+}
+.topbar__navlist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+}
+.topbar__navlink {
+  display: inline-block;
+  padding: 0.5rem 0.25rem;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+}
+.topbar__navlink:hover {
+  color: var(--link-hover);
+  border-bottom-color: color-mix(in srgb, var(--action) 50%, transparent);
+}
+.topbar__navlink[aria-current='page'] {
+  color: var(--action);
+  border-bottom-color: var(--action);
+}
+.topbar__soon {
+  /* The future-phase chips sit a touch lower-key in the nav row. */
+  white-space: nowrap;
+}
+
+/* --- Controls ----------------------------------------------------------- */
+.topbar__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  font-size: var(--step--1);
+  font-weight: 600;
+  cursor: pointer;
+}
+.control:hover {
+  border-color: var(--action);
+}
+.control.is-on {
+  background: color-mix(in srgb, var(--accent-green) 18%, var(--surface));
+  border-color: var(--accent-green);
+  color: var(--ink);
+}
+.control svg {
+  flex: none;
+}
+.control__text {
+  white-space: nowrap;
+}
+
+/* Reading-font field: visible label + native select (fully accessible). */
+.control--field {
+  cursor: default;
+}
+.control__select {
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: var(--radius-xs);
+  padding: 0.25rem 0.4rem;
+  font-size: var(--step--1);
+  font-weight: 600;
+  min-height: 36px;
+  cursor: pointer;
+}
+
+/* On small screens, the controls drop to their own full row. */
+@media (max-width: 52rem) {
+  .topbar__controls {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: flex-start;
+  }
+  .topbar__nav {
+    order: 2;
+    flex-basis: 100%;
+  }
+}

@@ -1,0 +1,133 @@
+.hero {
+  padding-block: clamp(var(--space-7), 8vw, var(--space-9));
+  /* A soft, decorative graph-paper wash — aria-hidden by being pure CSS. */
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.hero__inner {
+  max-width: 52rem;
+}
+
+.hero__kicker {
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-periwinkle);
+  margin-bottom: var(--space-3);
+}
+
+.hero__title {
+  font-size: var(--step-4);
+  max-width: 18ch;
+  margin-bottom: var(--space-6);
+}
+
+/* --- The grok definition block ----------------------------------------- */
+.hero__def {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+  padding: clamp(var(--space-5), 4vw, var(--space-7));
+  margin-bottom: var(--space-6);
+}
+
+.hero__word {
+  position: relative;
+  display: inline-block;
+  margin-bottom: var(--space-4);
+}
+.hero__word-text {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.75rem, 2rem + 4vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.hero__underline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.18em;
+  width: 100%;
+  height: 0.42em;
+  overflow: visible;
+  color: var(--accent-amber-fill);
+}
+.hero__underline path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 6;
+  stroke-linecap: round;
+  /* Self-drawing line: 320 comfortably exceeds the path length. */
+  stroke-dasharray: 320;
+  stroke-dashoffset: 0;
+  animation: grok-draw var(--dur-slow) var(--ease) both;
+}
+
+@keyframes grok-draw {
+  from {
+    stroke-dashoffset: 320;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hero__def-intro {
+  font-size: var(--step-1);
+  color: var(--ink-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.hero__framings {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.hero__framing {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--step-1);
+  max-width: 52ch;
+}
+.hero__framing-arrow {
+  flex: none;
+  display: inline-flex;
+  margin-top: 0.15em;
+  color: var(--accent-periwinkle);
+}
+.hero__framing:nth-child(2) .hero__framing-arrow {
+  color: var(--accent-green);
+}
+.hero__framing:nth-child(3) .hero__framing-arrow {
+  color: var(--accent-amber-ink);
+}
+
+/* --- Restatement, CTAs, reassurance ------------------------------------ */
+.hero__restatement {
+  font-size: var(--step-1);
+  max-width: 56ch;
+  margin-bottom: var(--space-6);
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.hero__reassurance {
+  font-size: var(--step-0);
+  color: var(--ink-secondary);
+  max-width: 52ch;
+  font-style: italic;
+}
