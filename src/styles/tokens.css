@@ -17,6 +17,9 @@
   --font-system: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
   --font-atkinson: 'Atkinson Hyperlegible', 'Lexend', var(--font-system);
+  /* Optional "fun" reading-font choice. Ships with virtually every desktop OS,
+     so no webfont download; falls through to Atkinson if it is somehow absent. */
+  --font-comicsans: 'Comic Sans MS', 'Comic Sans', 'Comic Neue', var(--font-atkinson);
 
   /* Atkinson Hyperlegible is the default for BODY and headings — the
      single highest-impact dyslexia win. The reading-font toggle overrides
@@ -164,6 +167,11 @@
 /* ========================================================================= */
 /*  READING-FONT TOGGLE — reader agency over typography                      */
 /* ========================================================================= */
+[data-font='comicsans'] {
+  --font-body: var(--font-comicsans);
+  --font-heading: var(--font-comicsans);
+}
+
 [data-font='system'] {
   --font-body: var(--font-system);
   --font-heading: var(--font-system);
