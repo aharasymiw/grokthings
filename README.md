@@ -81,8 +81,8 @@ Accessibility is a first-class requirement here, not a polish pass:
   Respects `prefers-reduced-motion`, plus a manual **Calm mode** for the many
   people who never set the OS flag.
 - **Reader agency:** in-page **Theme**, **Calm mode**, and **Reading font**
-  (System / Atkinson Hyperlegible / extra spacing / OpenDyslexic) controls,
-  remembered between visits.
+  (Atkinson Hyperlegible / Comic Sans / System / extra spacing / OpenDyslexic)
+  controls, remembered between visits.
 - **Typography:** Atkinson Hyperlegible for body and headings, 18px+ base,
   generous spacing, left-aligned (never justified), 60–66ch measure.
 

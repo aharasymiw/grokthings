@@ -23,6 +23,7 @@ const FONT_KEY = 'grok-font'
 export const THEMES = ['auto', 'light', 'dark']
 export const FONTS = [
   { id: 'atkinson', label: 'Atkinson', hint: 'Hyperlegible (default)' },
+  { id: 'comicsans', label: 'Comic Sans', hint: 'playful & friendly' },
   { id: 'system', label: 'System', hint: 'your device font' },
   { id: 'spacing', label: 'Extra spacing', hint: 'roomier lines' },
   { id: 'opendyslexic', label: 'OpenDyslexic', hint: 'weighted letters' },
