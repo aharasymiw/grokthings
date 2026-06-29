@@ -85,16 +85,6 @@ const GLYPHS = {
       <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none" />
     </>
   ),
-  calm: (
-    <path d="M3 9.5c3-2.2 5-2.2 9 0s6 2.2 9 0M3 15c3-2.2 5-2.2 9 0s6 2.2 9 0" />
-  ),
-  font: (
-    <>
-      <path d="M4 19.5 9.7 5h1.1L16.5 19.5" />
-      <path d="M6.4 14.5h7.7" />
-      <path d="M18 19.5V11M18 11c.9-1 3.6-1 3.6 1.6v6.9M21.6 12.6V19.5" />
-    </>
-  ),
 
   // Links / actions
   youtube: (

@@ -1,10 +1,10 @@
 /* TopBar.jsx — calm top bar: wordmark, in-page nav (with active-section
-   highlighting), the future "coming soon" homes, and the three controls. */
+   highlighting), and the reading controls. */
 
 import { nav, site } from '../data/content.js'
 import { useActiveSection } from '../hooks/useActiveSection.js'
 import { Icon } from './Icon.jsx'
-import { CalmControl, FontControl, ThemeControl } from './Controls.jsx'
+import { FontControl, ThemeControl } from './Controls.jsx'
 import './TopBar.css'
 
 // Stable id list so the IntersectionObserver effect doesn't re-run each render.
@@ -36,20 +36,11 @@ export function TopBar() {
                 </a>
               </li>
             ))}
-            {nav.comingSoon.map((c) => (
-              <li key={c.label}>
-                {/* Non-interactive, clearly labelled future homes. */}
-                <span className="chip chip--soon topbar__soon">
-                  {c.label} <span className="chip__note">· {c.note}</span>
-                </span>
-              </li>
-            ))}
           </ul>
         </nav>
 
         <div className="topbar__controls" role="group" aria-label="Reading preferences">
           <ThemeControl />
-          <CalmControl />
           <FontControl />
         </div>
       </div>

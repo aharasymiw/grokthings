@@ -65,10 +65,6 @@
   color: var(--action);
   border-bottom-color: var(--action);
 }
-.topbar__soon {
-  /* The future-phase chips sit a touch lower-key in the nav row. */
-  white-space: nowrap;
-}
 
 /* --- Controls ----------------------------------------------------------- */
 .topbar__controls {
@@ -106,8 +102,10 @@
   white-space: nowrap;
 }
 
-/* Reading-font field: visible label + native select (fully accessible). */
+/* Reading-font field: visible label + native select (fully accessible).
+   No border on the wrapper itself — only the select inside is outlined. */
 .control--field {
+  border: none;
   cursor: default;
 }
 .control__select {
