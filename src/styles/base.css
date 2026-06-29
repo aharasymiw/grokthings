@@ -145,9 +145,8 @@ ul, ol {
 }
 
 /* --- Respect reduced-motion globally ------------------------------------ */
-/* Two triggers, identical effect: the OS preference, and our manual Calm mode
-   (data-calm="true") for the many ND readers who never set the OS flag.
-   Motion collapses to its final state — nothing loops, drifts, or flashes. */
+/* Honour the OS prefers-reduced-motion setting: motion collapses to its final
+   state — nothing loops, drifts, or flashes. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -160,17 +159,4 @@ ul, ol {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-[data-calm='true'] {
-  scroll-behavior: auto;
-}
-
-[data-calm='true'] *,
-[data-calm='true'] *::before,
-[data-calm='true'] *::after {
-  animation-duration: 0.001ms !important;
-  animation-iteration-count: 1 !important;
-  transition-duration: 0.001ms !important;
-  scroll-behavior: auto !important;
 }

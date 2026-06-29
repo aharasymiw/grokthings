@@ -1,10 +1,10 @@
 /* ===========================================================================
-   preferences.jsx — reader-agency layer (theme / calm mode / reading font)
+   preferences.jsx — reader-agency layer (theme / reading font)
 
-   The single source of truth for the three ND-affirming controls. State is
-   mirrored onto <html data-theme data-calm data-font> (so CSS reacts) and
-   persisted to localStorage. `reducedMotion` combines OS preference with the
-   manual Calm-mode toggle — because most ND visitors never set the OS flag.
+   The single source of truth for the ND-affirming controls. State is mirrored
+   onto <html data-theme data-font> (so CSS reacts) and persisted to
+   localStorage. `reducedMotion` follows the OS prefers-reduced-motion setting,
+   which gates the page's scroll reveals and the hero underline draw.
    ======================================================================== */
 
 import {
@@ -17,7 +17,6 @@ import {
 } from 'react'
 
 const THEME_KEY = 'grok-theme' // shared with public/theme-init.js
-const CALM_KEY = 'grok-calm'
 const FONT_KEY = 'grok-font'
 
 export const THEMES = ['auto', 'light', 'dark']
@@ -74,9 +73,6 @@ const PreferencesContext = createContext(null)
 
 export function PreferencesProvider({ children }) {
   const [theme, setThemeState] = useState(() => read(THEME_KEY, THEMES, 'auto'))
-  const [calm, setCalmState] = useState(
-    () => read(CALM_KEY, ['true', 'false'], 'false') === 'true',
-  )
   const [font, setFontState] = useState(() =>
     read(FONT_KEY, FONTS.map((f) => f.id), 'atkinson'),
   )
@@ -98,12 +94,6 @@ export function PreferencesProvider({ children }) {
     else write(THEME_KEY, theme)
   }, [theme])
 
-  // Apply calm mode.
-  useEffect(() => {
-    html().setAttribute('data-calm', String(calm))
-    write(CALM_KEY, String(calm))
-  }, [calm])
-
   // Apply reading font (loading OpenDyslexic on demand).
   useEffect(() => {
     html().setAttribute('data-font', font)
@@ -120,23 +110,20 @@ export function PreferencesProvider({ children }) {
       }),
     [],
   )
-  const toggleCalm = useCallback(() => setCalmState((c) => !c), [])
   const setFont = useCallback((f) => setFontState(f), [])
 
-  const reducedMotion = calm || osReducedMotion
+  const reducedMotion = osReducedMotion
 
   const value = useMemo(
     () => ({
       theme,
       setTheme,
       cycleTheme,
-      calm,
-      toggleCalm,
       font,
       setFont,
       reducedMotion,
     }),
-    [theme, setTheme, cycleTheme, calm, toggleCalm, font, setFont, reducedMotion],
+    [theme, setTheme, cycleTheme, font, setFont, reducedMotion],
   )
 
   return (

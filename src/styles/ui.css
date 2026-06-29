@@ -60,27 +60,6 @@
   padding: var(--space-5);
 }
 
-/* --- Chips -------------------------------------------------------------- */
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.3rem 0.75rem;
-  border-radius: var(--radius-pill);
-  font-size: var(--step--1);
-  font-weight: 600;
-}
-
-/* "Coming soon" markers: clearly labelled, non-interactive, never disabled-looking. */
-.chip--soon {
-  background: var(--surface-sunken);
-  color: var(--ink-secondary);
-  border: 1px dashed var(--border-strong);
-}
-.chip--soon .chip__note {
-  font-weight: 400;
-}
-
 /* --- Perspective channels: hue is ALWAYS backed by label + shape + position - */
 .pchannel--green {
   --channel: var(--accent-green);

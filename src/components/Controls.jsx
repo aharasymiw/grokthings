@@ -29,27 +29,10 @@ export function ThemeControl() {
   )
 }
 
-export function CalmControl() {
-  const { calm, toggleCalm } = usePreferences()
-  return (
-    <button
-      type="button"
-      className={`control${calm ? ' is-on' : ''}`}
-      onClick={toggleCalm}
-      aria-pressed={calm}
-      title="Calm mode turns off all motion"
-    >
-      <Icon name={calm ? 'check' : 'calm'} size={20} />
-      <span className="control__text">Calm{calm ? ' on' : ''}</span>
-    </button>
-  )
-}
-
 export function FontControl() {
   const { font, setFont } = usePreferences()
   return (
     <span className="control control--field">
-      <Icon name="font" size={20} />
       <label htmlFor="reading-font" className="control__text">
         Reading&nbsp;font
       </label>
