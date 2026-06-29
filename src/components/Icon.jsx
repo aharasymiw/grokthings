@@ -85,6 +85,7 @@ const GLYPHS = {
       <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none" />
     </>
   ),
+  menu: <path d="M4 7h16M4 12h16M4 17h16" />,
 
   // Links / actions
   youtube: (

@@ -120,15 +120,56 @@
   cursor: pointer;
 }
 
-/* On small screens, the controls drop to their own full row. */
+/* --- Mobile menu -------------------------------------------------------- */
+/* Wide screens: no menu button, and the wrapper dissolves (display: contents)
+   so the nav + controls flow inline as direct children of the bar — exactly
+   as they did before. */
+.topbar__menubtn {
+  display: none;
+}
+.topbar__collapse {
+  display: contents;
+}
+
+/* Narrow screens: collapse the nav + controls behind the upper-right "Menu"
+   button, which opens them as a panel dropping from the bar. The bar itself
+   keeps its slim single-row height and stays pinned to the top. */
 @media (max-width: 52rem) {
-  .topbar__controls {
-    order: 3;
-    flex-basis: 100%;
-    justify-content: flex-start;
+  .topbar__menubtn {
+    display: inline-flex;
+    margin-left: auto; /* push the button to the upper right */
   }
-  .topbar__nav {
-    order: 2;
-    flex-basis: 100%;
+  .topbar__menubtn[aria-expanded='true'] {
+    border-color: var(--action);
+    color: var(--action);
+  }
+
+  .topbar__collapse {
+    display: none;
+  }
+  .topbar[data-menu-open='true'] .topbar__collapse {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-4);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: var(--space-4) var(--space-5) var(--space-5);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-2);
+  }
+
+  /* Stack the nav links into full-width rows with comfortable tap targets. */
+  .topbar[data-menu-open='true'] .topbar__navlist {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-1);
+  }
+  .topbar[data-menu-open='true'] .topbar__navlink {
+    display: block;
+    padding: var(--space-2) var(--space-1);
   }
 }
