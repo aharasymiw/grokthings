@@ -77,6 +77,28 @@ function ensureOpenDyslexic() {
   return openDyslexicLoading
 }
 
+// Comic Sans MS is a Windows/macOS font — Android and Linux don't have it, so
+// the comic stack used to fall silently through to Atkinson there. Comic Neue
+// (already third in the stack) is its open-licensed twin; fetch it lazily
+// whenever the comic stack is in use. Always fetch: document.fonts.check()
+// false-positives for uninstalled families in Chromium, so "is the real
+// Comic Sans here?" can't be answered reliably. Where it is, it still wins
+// the stack and the small download simply goes unused.
+let comicNeueLoading = null
+function ensureComicNeue() {
+  if (comicNeueLoading) return comicNeueLoading
+  comicNeueLoading = Promise.all([
+    import('@fontsource/comic-neue/latin-400.css'),
+    import('@fontsource/comic-neue/latin-700.css'),
+    // base.css sets font-synthesis: none, so italics need a real face.
+    import('@fontsource/comic-neue/latin-400-italic.css'),
+  ]).catch(() => {
+    // If it fails to load, the Atkinson fallback in the stack keeps text readable.
+    comicNeueLoading = null
+  })
+  return comicNeueLoading
+}
+
 const PreferencesContext = createContext(null)
 
 export function PreferencesProvider({ children }) {
@@ -105,18 +127,21 @@ export function PreferencesProvider({ children }) {
     else write(THEME_KEY, theme)
   }, [theme])
 
-  // Apply visual style to the document + persist.
+  // Apply visual style to the document + persist. Lisa Frank's display font
+  // is the comic stack, so make sure a comic face exists on this device.
   useEffect(() => {
     html().setAttribute('data-style', style)
     if (style === 'calm') remove(STYLE_KEY)
     else write(STYLE_KEY, style)
+    if (style === 'lisafrank') ensureComicNeue()
   }, [style])
 
-  // Apply reading font (loading OpenDyslexic on demand).
+  // Apply reading font (loading OpenDyslexic / Comic Neue on demand).
   useEffect(() => {
     html().setAttribute('data-font', font)
     write(FONT_KEY, font)
     if (font === 'opendyslexic') ensureOpenDyslexic()
+    if (font === 'comicsans') ensureComicNeue()
   }, [font])
 
   const setTheme = useCallback((t) => setThemeState(THEMES.includes(t) ? t : 'auto'), [])

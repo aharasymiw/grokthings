@@ -17,8 +17,9 @@
   --font-system: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
   --font-atkinson: 'Atkinson Hyperlegible', 'Lexend', var(--font-system);
-  /* Optional "fun" reading-font choice. Ships with virtually every desktop OS,
-     so no webfont download; falls through to Atkinson if it is somehow absent. */
+  /* Optional "fun" reading-font choice. Desktop OSes ship Comic Sans MS; on
+     Android/Linux, preferences.jsx lazily fetches Comic Neue (its open twin,
+     next in the stack) when this stack is in use. Atkinson is the last net. */
   --font-comicsans: 'Comic Sans MS', 'Comic Sans', 'Comic Neue', var(--font-atkinson);
 
   /* Atkinson Hyperlegible is the default for BODY and headings — the
