@@ -223,7 +223,7 @@ export const accessibility = {
   ],
   points: [
     'Stays readable if our font doesn’t load, and remembers your settings between visits.',
-    'Respects your system reduced-motion and font-size settings — plus a reading-font picker right in the top bar.',
+    'Respects your system reduced-motion and font-size settings — plus style and reading-font pickers right in the top bar.',
     'Colour never carries meaning on its own; everything also has a label, a shape, and a position.',
     'Strong contrast and large, generously-spaced text in both light and dark themes.',
     'Full keyboard support with a visible focus ring everywhere you can go.',

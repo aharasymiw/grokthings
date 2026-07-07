@@ -1,0 +1,263 @@
+/* ===========================================================================
+   style-lisafrank.css — the "Lisa Frank" site style ([data-style='lisafrank']).
+
+   Full 90s trapper-keeper maximalism: rainbow-gradient headings, sticker
+   cards with fat white borders and candy-coloured glows, sparkle-and-heart
+   confetti (an SVG data: tile — CSP-safe), and neon-on-black-velvet in dark
+   mode. Loud on purpose — but every text/background pair still holds WCAG AA
+   (the rainbow stops are deep in light mode, bright in dark mode).
+
+   Structure mirrors tokens.css: light palette, explicit dark, auto+OS-dark.
+   ======================================================================== */
+
+/* ---- Lisa Frank light (default) ---------------------------------------- */
+[data-style='lisafrank'] {
+  --bg: #fdeef9;               /* cotton-candy pink-white */
+  --surface: #ffffff;
+  --surface-sunken: #f6e3ff;   /* lavender band */
+  --ink: #46106c;              /* deep violet */
+  --ink-secondary: #71349b;
+  --action: #b1106a;           /* hot magenta (6.1:1 on white) */
+  --on-action: #ffffff;
+  --link: #8b1bb8;
+  --link-hover: #6d0f95;
+
+  --accent-green: #007a63;        /* deep teal */
+  --accent-periwinkle: #6d28d9;   /* electric purple */
+  --accent-amber-ink: #a53c00;    /* hot-orange AS TEXT */
+  --accent-amber-fill: #ffd23e;   /* sunshine sticker — FILL ONLY */
+  --on-amber-fill: #46106c;
+
+  --focus: #6d28d9;
+
+  --border: rgba(70, 16, 108, 0.2);
+  --border-strong: rgba(70, 16, 108, 0.42);
+  --grid-line: rgba(70, 16, 108, 0.05);
+
+  /* Candy-coloured glow instead of grey shadows. */
+  --shadow-1: 0 2px 8px rgba(177, 16, 106, 0.14);
+  --shadow-2: 0 3px 10px rgba(177, 16, 106, 0.14), 0 8px 24px rgba(109, 40, 217, 0.18);
+
+  /* Bubblier corners everywhere. */
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+
+  /* Lisa-Frank-only tokens */
+  --lf-rainbow: linear-gradient(100deg, #ad1075 0%, #7c1fd1 38%, #3f46c7 66%, #00755f 100%);
+  --lf-button: linear-gradient(135deg, #b1106a, #6d28d9);
+  --lf-button-hover: linear-gradient(135deg, #c81a80, #7d3cec);
+  --lf-trim: linear-gradient(90deg, #ff4fa3, #8b5cf6, #22d3ee, #ffd23e);
+  --lf-sticker: rgba(255, 255, 255, 0.95);
+  --lf-wash:
+    radial-gradient(60rem 40rem at 12% -5%, rgba(255, 79, 163, 0.16), transparent 60%),
+    radial-gradient(50rem 36rem at 88% 8%, rgba(34, 211, 238, 0.13), transparent 60%),
+    radial-gradient(70rem 50rem at 50% 110%, rgba(139, 92, 246, 0.16), transparent 60%);
+  /* Sparkles, stars, and one heart — deep colours at low alpha for light mode. */
+  --lf-stars: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cpath d='M36 18q3 13 16 16q-13 3-16 16q-3-13-16-16q13-3 16-16z' fill='%23b1106a' fill-opacity='.3'/%3E%3Cpath d='M176 64q4 16 20 20q-16 4-20 20q-4-16-20-20q16-4 20-20z' fill='%236d28d9' fill-opacity='.28'/%3E%3Cpath d='M96 150q3 11 13 14q-10 3-13 14q-3-11-13-14q10-3 13-14z' fill='%23007a63' fill-opacity='.3'/%3E%3Ccircle cx='212' cy='196' r='5' fill='%23e09c00' fill-opacity='.45'/%3E%3Ccircle cx='150' cy='24' r='3' fill='%23007a63' fill-opacity='.4'/%3E%3Ccircle cx='24' cy='120' r='3.5' fill='%236d28d9' fill-opacity='.4'/%3E%3Cpath d='M56 196c5-7 16-4 16 4c0 7-16 16-16 16s-16-9-16-16c0-8 11-11 16-4z' fill='%23b1106a' fill-opacity='.26'/%3E%3C/svg%3E");
+
+  color-scheme: light;
+}
+
+/* ---- Lisa Frank dark: neon on black velvet ------------------------------ */
+[data-style='lisafrank'][data-theme='dark'] {
+  --bg: #180a2c;               /* black-velvet violet */
+  --surface: #2a1348;
+  --surface-sunken: #10061f;
+  --ink: #fdeaff;
+  --ink-secondary: #d9b8f0;
+  --action: #ff7ad9;           /* neon pink */
+  --on-action: #3a0f56;
+  --link: #8fe8ff;             /* neon cyan */
+  --link-hover: #c2f3ff;
+
+  --accent-green: #7cf2cd;
+  --accent-periwinkle: #cfa9ff;
+  --accent-amber-ink: #ffd23e;
+  --accent-amber-fill: #ffd23e;
+  --on-amber-fill: #46106c;
+
+  --focus: #8fe8ff;            /* cyan ring — distinct from the pink action */
+
+  --border: rgba(253, 234, 255, 0.18);
+  --border-strong: rgba(253, 234, 255, 0.4);
+  --grid-line: rgba(253, 234, 255, 0.05);
+
+  /* Neon glow. */
+  --shadow-1: 0 0 12px rgba(255, 122, 217, 0.22);
+  --shadow-2: 0 0 14px rgba(255, 122, 217, 0.25), 0 0 34px rgba(143, 232, 255, 0.18);
+
+  --lf-rainbow: linear-gradient(100deg, #ff8ddc 0%, #cfa9ff 38%, #8fe8ff 66%, #7cf2cd 100%);
+  --lf-button: linear-gradient(135deg, #ff6fd3, #b388ff);
+  --lf-button-hover: linear-gradient(135deg, #ff8ddc, #c7a4ff);
+  --lf-trim: linear-gradient(90deg, #ff6fd3, #b388ff, #6fe8ff, #ffd23e);
+  --lf-sticker: rgba(255, 255, 255, 0.85);
+  --lf-wash:
+    radial-gradient(60rem 40rem at 12% -5%, rgba(255, 111, 211, 0.2), transparent 60%),
+    radial-gradient(50rem 36rem at 88% 8%, rgba(111, 232, 255, 0.14), transparent 60%),
+    radial-gradient(70rem 50rem at 50% 110%, rgba(179, 136, 255, 0.2), transparent 60%);
+  --lf-stars: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cpath d='M36 18q3 13 16 16q-13 3-16 16q-3-13-16-16q13-3 16-16z' fill='%23ff8ddc' fill-opacity='.5'/%3E%3Cpath d='M176 64q4 16 20 20q-16 4-20 20q-4-16-20-20q16-4 20-20z' fill='%23b388ff' fill-opacity='.5'/%3E%3Cpath d='M96 150q3 11 13 14q-10 3-13 14q-3-11-13-14q10-3 13-14z' fill='%237cf2cd' fill-opacity='.5'/%3E%3Ccircle cx='212' cy='196' r='5' fill='%23ffd23e' fill-opacity='.55'/%3E%3Ccircle cx='150' cy='24' r='3' fill='%238fe8ff' fill-opacity='.5'/%3E%3Ccircle cx='24' cy='120' r='3.5' fill='%23cfa9ff' fill-opacity='.5'/%3E%3Cpath d='M56 196c5-7 16-4 16 4c0 7-16 16-16 16s-16-9-16-16c0-8 11-11 16-4z' fill='%23ff8ddc' fill-opacity='.4'/%3E%3C/svg%3E");
+
+  color-scheme: dark;
+}
+
+/* Auto mode follows the operating system (same values as explicit dark). */
+@media (prefers-color-scheme: dark) {
+  [data-style='lisafrank'][data-theme='auto'] {
+    --bg: #180a2c;
+    --surface: #2a1348;
+    --surface-sunken: #10061f;
+    --ink: #fdeaff;
+    --ink-secondary: #d9b8f0;
+    --action: #ff7ad9;
+    --on-action: #3a0f56;
+    --link: #8fe8ff;
+    --link-hover: #c2f3ff;
+
+    --accent-green: #7cf2cd;
+    --accent-periwinkle: #cfa9ff;
+    --accent-amber-ink: #ffd23e;
+    --accent-amber-fill: #ffd23e;
+    --on-amber-fill: #46106c;
+
+    --focus: #8fe8ff;
+
+    --border: rgba(253, 234, 255, 0.18);
+    --border-strong: rgba(253, 234, 255, 0.4);
+    --grid-line: rgba(253, 234, 255, 0.05);
+
+    --shadow-1: 0 0 12px rgba(255, 122, 217, 0.22);
+    --shadow-2: 0 0 14px rgba(255, 122, 217, 0.25), 0 0 34px rgba(143, 232, 255, 0.18);
+
+    --lf-rainbow: linear-gradient(100deg, #ff8ddc 0%, #cfa9ff 38%, #8fe8ff 66%, #7cf2cd 100%);
+    --lf-button: linear-gradient(135deg, #ff6fd3, #b388ff);
+    --lf-button-hover: linear-gradient(135deg, #ff8ddc, #c7a4ff);
+    --lf-trim: linear-gradient(90deg, #ff6fd3, #b388ff, #6fe8ff, #ffd23e);
+    --lf-sticker: rgba(255, 255, 255, 0.85);
+    --lf-wash:
+      radial-gradient(60rem 40rem at 12% -5%, rgba(255, 111, 211, 0.2), transparent 60%),
+      radial-gradient(50rem 36rem at 88% 8%, rgba(111, 232, 255, 0.14), transparent 60%),
+      radial-gradient(70rem 50rem at 50% 110%, rgba(179, 136, 255, 0.2), transparent 60%);
+    --lf-stars: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cpath d='M36 18q3 13 16 16q-13 3-16 16q-3-13-16-16q13-3 16-16z' fill='%23ff8ddc' fill-opacity='.5'/%3E%3Cpath d='M176 64q4 16 20 20q-16 4-20 20q-4-16-20-20q16-4 20-20z' fill='%23b388ff' fill-opacity='.5'/%3E%3Cpath d='M96 150q3 11 13 14q-10 3-13 14q-3-11-13-14q10-3 13-14z' fill='%237cf2cd' fill-opacity='.5'/%3E%3Ccircle cx='212' cy='196' r='5' fill='%23ffd23e' fill-opacity='.55'/%3E%3Ccircle cx='150' cy='24' r='3' fill='%238fe8ff' fill-opacity='.5'/%3E%3Ccircle cx='24' cy='120' r='3.5' fill='%23cfa9ff' fill-opacity='.5'/%3E%3Cpath d='M56 196c5-7 16-4 16 4c0 7-16 16-16 16s-16-9-16-16c0-8 11-11 16-4z' fill='%23ff8ddc' fill-opacity='.4'/%3E%3C/svg%3E");
+
+    color-scheme: dark;
+  }
+}
+
+/* ========================================================================= */
+/*  Type — bubbly headings, but only while the reading font is the default.  */
+/*  Any explicit reading-font pick (System, OpenDyslexic, extra spacing…)    */
+/*  outranks the style's display font — accessibility beats aesthetics.      */
+/* ========================================================================= */
+[data-style='lisafrank'][data-font='atkinson'] {
+  --font-heading: var(--font-comicsans);
+}
+
+/* Rainbow lettering — guarded so text can never go invisible where
+   background-clip:text is unsupported. */
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  [data-style='lisafrank'] .hero__title,
+  [data-style='lisafrank'] .hero__word-text,
+  [data-style='lisafrank'] .section-title {
+    background-image: var(--lf-rainbow);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* The emboss line under headings would smear across clipped text. */
+  [data-style='lisafrank'] .hero__title,
+  [data-style='lisafrank'] .section-title {
+    text-shadow: none;
+  }
+}
+
+/* ========================================================================= */
+/*  Page-level confetti                                                      */
+/* ========================================================================= */
+
+[data-style='lisafrank'] body {
+  background-image: var(--lf-wash);
+}
+
+/* Hero: swap graph paper for sparkles over the wash. */
+[data-style='lisafrank'] .hero {
+  background-image: var(--lf-stars);
+}
+
+[data-style='lisafrank'] .section--sunken,
+[data-style='lisafrank'] .footer {
+  background-image: var(--lf-stars);
+}
+
+/* The grok underline in hot pink marker. */
+[data-style='lisafrank'] .hero__underline {
+  color: var(--action);
+}
+
+/* The neon glow shadow bleeds into view from the off-screen skip link;
+   only glow it while it's actually on screen (focused). */
+[data-style='lisafrank'] .skip-link:not(:focus) {
+  box-shadow: none;
+}
+
+/* ========================================================================= */
+/*  Top bar — rainbow trim                                                   */
+/* ========================================================================= */
+
+[data-style='lisafrank'] .topbar {
+  border-bottom: 3px solid transparent;
+  border-image: var(--lf-trim) 1;
+}
+
+/* ========================================================================= */
+/*  Stickers — fat white borders + candy glow                                */
+/* ========================================================================= */
+
+[data-style='lisafrank'] .card,
+[data-style='lisafrank'] .faq__item,
+[data-style='lisafrank'] .hero__def,
+[data-style='lisafrank'] .perspectives__subject,
+[data-style='lisafrank'] .perspectives__panel,
+[data-style='lisafrank'] .about__mission {
+  border: 3px solid var(--lf-sticker);
+  box-shadow: var(--shadow-2);
+}
+/* Keep the panel's coloured channel edge on top of the sticker border. */
+[data-style='lisafrank'] .perspectives__panel {
+  border-left: 6px solid var(--channel);
+}
+
+[data-style='lisafrank'] .perspectives__tab {
+  border-width: 3px;
+}
+
+/* Step numbers become little rainbow buttons. --on-action stays readable on
+   both gradients: white-on-deep in light, dark-violet-on-neon in dark. */
+[data-style='lisafrank'] .how__num {
+  background-color: var(--action);
+  background-image: var(--lf-button);
+}
+
+/* ========================================================================= */
+/*  Buttons — jelly pills with a two-stop gradient (both stops AA vs label)  */
+/* ========================================================================= */
+
+[data-style='lisafrank'] .btn {
+  border-radius: var(--radius-pill);
+}
+
+[data-style='lisafrank'] .btn--primary {
+  background-color: var(--action);
+  background-image: var(--lf-button);
+  color: var(--on-action);
+  border: 2px solid var(--lf-sticker);
+  box-shadow: var(--shadow-2);
+}
+[data-style='lisafrank'] .btn--primary:hover {
+  background-color: var(--action);
+  background-image: var(--lf-button-hover);
+}
+
+[data-style='lisafrank'] .btn--secondary {
+  border-width: 2px;
+}

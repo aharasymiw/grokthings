@@ -1,8 +1,8 @@
 /* ===========================================================================
-   preferences.jsx — reader-agency layer (theme / reading font)
+   preferences.jsx — reader-agency layer (theme / style / reading font)
 
    The single source of truth for the ND-affirming controls. State is mirrored
-   onto <html data-theme data-font> (so CSS reacts) and persisted to
+   onto <html data-theme data-style data-font> (so CSS reacts) and persisted to
    localStorage. `reducedMotion` follows the OS prefers-reduced-motion setting,
    which gates the page's scroll reveals and the hero underline draw.
    ======================================================================== */
@@ -17,9 +17,17 @@ import {
 } from 'react'
 
 const THEME_KEY = 'grok-theme' // shared with public/theme-init.js
+const STYLE_KEY = 'grok-style' // shared with public/theme-init.js
 const FONT_KEY = 'grok-font'
 
 export const THEMES = ['auto', 'light', 'dark']
+// Whole-site visual styles ("skins"). Calm is the house look; the others
+// re-token and re-dress every component via [data-style] in src/styles/.
+export const STYLES = [
+  { id: 'calm', label: 'Calm', hint: 'quiet notebook (default)' },
+  { id: 'felt', label: 'Felt', hint: 'stitched fabric layers' },
+  { id: 'lisafrank', label: 'Lisa Frank', hint: 'rainbow maximalism' },
+]
 export const FONTS = [
   { id: 'atkinson', label: 'Atkinson', hint: 'Hyperlegible (default)' },
   { id: 'comicsans', label: 'Comic Sans', hint: 'playful & friendly' },
@@ -73,6 +81,9 @@ const PreferencesContext = createContext(null)
 
 export function PreferencesProvider({ children }) {
   const [theme, setThemeState] = useState(() => read(THEME_KEY, THEMES, 'auto'))
+  const [style, setStyleState] = useState(() =>
+    read(STYLE_KEY, STYLES.map((s) => s.id), 'calm'),
+  )
   const [font, setFontState] = useState(() =>
     read(FONT_KEY, FONTS.map((f) => f.id), 'atkinson'),
   )
@@ -94,6 +105,13 @@ export function PreferencesProvider({ children }) {
     else write(THEME_KEY, theme)
   }, [theme])
 
+  // Apply visual style to the document + persist.
+  useEffect(() => {
+    html().setAttribute('data-style', style)
+    if (style === 'calm') remove(STYLE_KEY)
+    else write(STYLE_KEY, style)
+  }, [style])
+
   // Apply reading font (loading OpenDyslexic on demand).
   useEffect(() => {
     html().setAttribute('data-font', font)
@@ -110,6 +128,10 @@ export function PreferencesProvider({ children }) {
       }),
     [],
   )
+  const setStyle = useCallback(
+    (s) => setStyleState(STYLES.some((opt) => opt.id === s) ? s : 'calm'),
+    [],
+  )
   const setFont = useCallback((f) => setFontState(f), [])
 
   const reducedMotion = osReducedMotion
@@ -119,11 +141,13 @@ export function PreferencesProvider({ children }) {
       theme,
       setTheme,
       cycleTheme,
+      style,
+      setStyle,
       font,
       setFont,
       reducedMotion,
     }),
-    [theme, setTheme, cycleTheme, font, setFont, reducedMotion],
+    [theme, setTheme, cycleTheme, style, setStyle, font, setFont, reducedMotion],
   )
 
   return (

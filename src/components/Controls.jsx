@@ -1,9 +1,9 @@
-/* Controls.jsx — the three reader-agency controls in the top bar.
+/* Controls.jsx — the reader-agency controls in the top bar.
    Each has a persistent text label (never icon-only), so they can never read
    as broken or disabled. State is announced to assistive tech via the control
    semantics (button label, aria-pressed, <select>), not by colour alone. */
 
-import { FONTS, usePreferences } from '../preferences.jsx'
+import { FONTS, STYLES, usePreferences } from '../preferences.jsx'
 import { Icon } from './Icon.jsx'
 
 const THEME_META = {
@@ -26,6 +26,29 @@ export function ThemeControl() {
       <Icon name={meta.icon} size={20} />
       <span className="control__text">{meta.label}</span>
     </button>
+  )
+}
+
+export function StyleControl() {
+  const { style, setStyle } = usePreferences()
+  return (
+    <span className="control control--field">
+      <label htmlFor="site-style" className="control__text">
+        Style
+      </label>
+      <select
+        id="site-style"
+        className="control__select"
+        value={style}
+        onChange={(e) => setStyle(e.target.value)}
+      >
+        {STYLES.map((s) => (
+          <option key={s.id} value={s.id}>
+            {s.label}
+          </option>
+        ))}
+      </select>
+    </span>
   )
 }
 
