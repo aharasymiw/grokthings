@@ -1,6 +1,10 @@
 /* Entry stylesheet. Order matters: tokens (variables) → base (resets/behavior)
-   → layout (page scaffolding). Component styles are imported by each component. */
+   → layout (page scaffolding) → site styles (whole-page skins — last, so
+   their [data-style] overrides win ties against everything above and against
+   the component stylesheets). Component styles are imported by each component. */
 @import './tokens.css';
 @import './base.css';
 @import './layout.css';
 @import './ui.css';
+@import './style-felt.css';
+@import './style-lisafrank.css';

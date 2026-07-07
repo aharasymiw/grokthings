@@ -1,0 +1,316 @@
+/* ===========================================================================
+   style-felt.css — the "Felt" site style ([data-style='felt']).
+
+   A craft table: every component is a sheet of solid felt fabric, hand-cut
+   (slightly uneven corners), stitched with dashed thread seams, and stacked
+   layer on layer (hard, blur-free offset shadows read as the sheet below).
+   The fibre texture is an SVG turbulence noise tile shipped as a data: URI
+   (allowed by the CSP's `img-src data:`), so there are no extra requests.
+
+   Structure mirrors tokens.css: a light palette, an explicit dark palette,
+   and an auto+OS-dark copy. Contrast pairs keep WCAG AA (≥ 4.5:1 body text).
+   The solid focus ring from base.css is left alone on purpose — it stays
+   visually distinct from the dashed stitching.
+   ======================================================================== */
+
+/* ---- Felt light (default) --------------------------------------------- */
+[data-style='felt'] {
+  --bg: #ebe0cb;               /* oatmeal wool board */
+  --surface: #f7eeda;          /* cream felt sheet */
+  --surface-sunken: #decfb0;   /* darker felt band */
+  --ink: #3b3226;              /* warm dark-brown thread */
+  --ink-secondary: #5f5340;
+  --action: #96351e;           /* brick-red felt patch */
+  --on-action: #fff6e4;
+  --link: #96351e;
+  --link-hover: #7a2a16;
+
+  --accent-green: #38684a;        /* leaf-green felt */
+  --accent-periwinkle: #40518f;   /* denim-blue felt */
+  --accent-amber-ink: #7d4d0d;    /* mustard AS TEXT */
+  --accent-amber-fill: #e3b04b;   /* mustard felt sheet — FILL ONLY */
+  --on-amber-fill: #3b3226;
+
+  --focus: #40518f;
+
+  --border: rgba(59, 50, 38, 0.22);
+  --border-strong: rgba(59, 50, 38, 0.45);
+  --grid-line: rgba(59, 50, 38, 0.05);
+
+  /* Felt-only tokens */
+  --stitch: rgba(59, 50, 38, 0.55);        /* thread colour for seams */
+  --felt-under-1: #d2c19e;                  /* the sheet peeking out below */
+  --felt-under-2: #b7a37c;                  /* …and the one below that */
+  --felt-emboss: rgba(255, 255, 255, 0.45); /* soft top-light on lettering */
+
+  /* Hard, blur-free offsets = physically stacked sheets, not floaty glows. */
+  --shadow-1: 0 3px 0 var(--felt-under-1);
+  --shadow-2: 0 4px 0 var(--felt-under-1), 0 9px 0 var(--felt-under-2);
+
+  /* Hand-cut corners: no two the same. */
+  --radius-sm: 9px 11px 8px 12px;
+  --radius-md: 14px 18px 13px 19px;
+  --radius-lg: 24px 30px 22px 32px;
+
+  /* Fibre texture: turbulence noise tinted warm-dark, very low alpha. */
+  --felt-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.22 0 0 0 0 0.18 0 0 0 0 0.12 0 0 0 0.35 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  color-scheme: light;
+}
+
+/* ---- Felt dark (explicit choice) --------------------------------------- */
+[data-style='felt'][data-theme='dark'] {
+  --bg: #26211a;               /* charcoal wool board */
+  --surface: #373026;          /* warm dark felt sheet */
+  --surface-sunken: #1b1712;
+  --ink: #f0e6d2;
+  --ink-secondary: #c9bda3;
+  --action: #e2a852;           /* mustard felt patch */
+  --on-action: #2b241a;
+  --link: #e8b568;
+  --link-hover: #f2ca8c;
+
+  --accent-green: #a8cf9e;
+  --accent-periwinkle: #aab8ea;
+  --accent-amber-ink: #e8c07c;
+  --accent-amber-fill: #d9a441;
+  --on-amber-fill: #2b241a;
+
+  --focus: #aab8ea;            /* denim ring — distinct from the gold action */
+
+  --border: rgba(240, 230, 210, 0.18);
+  --border-strong: rgba(240, 230, 210, 0.4);
+  --grid-line: rgba(240, 230, 210, 0.05);
+
+  --stitch: rgba(240, 230, 210, 0.5);
+  --felt-under-1: #171310;
+  --felt-under-2: #0d0b08;
+  --felt-emboss: rgba(0, 0, 0, 0.5);
+
+  --shadow-1: 0 3px 0 var(--felt-under-1);
+  --shadow-2: 0 4px 0 var(--felt-under-1), 0 9px 0 var(--felt-under-2);
+
+  /* Light fibre speckle for dark wool. */
+  --felt-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.9 0 0 0 0 0.78 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  color-scheme: dark;
+}
+
+/* Auto mode follows the operating system (same values as explicit dark). */
+@media (prefers-color-scheme: dark) {
+  [data-style='felt'][data-theme='auto'] {
+    --bg: #26211a;
+    --surface: #373026;
+    --surface-sunken: #1b1712;
+    --ink: #f0e6d2;
+    --ink-secondary: #c9bda3;
+    --action: #e2a852;
+    --on-action: #2b241a;
+    --link: #e8b568;
+    --link-hover: #f2ca8c;
+
+    --accent-green: #a8cf9e;
+    --accent-periwinkle: #aab8ea;
+    --accent-amber-ink: #e8c07c;
+    --accent-amber-fill: #d9a441;
+    --on-amber-fill: #2b241a;
+
+    --focus: #aab8ea;
+
+    --border: rgba(240, 230, 210, 0.18);
+    --border-strong: rgba(240, 230, 210, 0.4);
+    --grid-line: rgba(240, 230, 210, 0.05);
+
+    --stitch: rgba(240, 230, 210, 0.5);
+    --felt-under-1: #171310;
+    --felt-under-2: #0d0b08;
+    --felt-emboss: rgba(0, 0, 0, 0.5);
+
+    --shadow-1: 0 3px 0 var(--felt-under-1);
+    --shadow-2: 0 4px 0 var(--felt-under-1), 0 9px 0 var(--felt-under-2);
+
+    --felt-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.9 0 0 0 0 0.78 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+
+    color-scheme: dark;
+  }
+}
+
+/* ========================================================================= */
+/*  The craft table — page-level fabric                                      */
+/* ========================================================================= */
+
+[data-style='felt'] body {
+  background-image: var(--felt-noise);
+}
+
+/* Lettering looks pressed into the felt: one soft top-light line. */
+[data-style='felt'] h1,
+[data-style='felt'] h2,
+[data-style='felt'] h3,
+[data-style='felt'] h4 {
+  text-shadow: 0 1px 0 var(--felt-emboss);
+}
+
+/* The hero swaps graph paper for the bare board (body texture shows through). */
+[data-style='felt'] .hero {
+  background-image: none;
+}
+
+/* The grok underline becomes a running stitch of mustard yarn. */
+[data-style='felt'] .hero__underline path {
+  stroke-width: 5;
+  stroke-dasharray: 12 8;
+}
+
+/* Sunken bands are one huge felt sheet sewn onto the board. */
+[data-style='felt'] .section--sunken {
+  background-image: var(--felt-noise);
+  border-block: 2px dashed var(--stitch);
+}
+
+[data-style='felt'] .footer {
+  background-image: var(--felt-noise);
+  border-top: 2px dashed var(--stitch);
+}
+
+/* The hard offset shadow can peek out below the off-screen skip link;
+   only show it while the link is actually on screen (focused). */
+[data-style='felt'] .skip-link:not(:focus) {
+  box-shadow: none;
+}
+
+/* ========================================================================= */
+/*  Top bar — an opaque felt strip stitched to the top edge                  */
+/* ========================================================================= */
+
+[data-style='felt'] .topbar {
+  background-color: var(--surface);
+  background-image: var(--felt-noise);
+  backdrop-filter: none;
+  border-bottom: 2px dashed var(--stitch);
+}
+
+[data-style='felt'] .control,
+[data-style='felt'] .control__select {
+  background-color: var(--surface);
+  border-style: dashed;
+}
+[data-style='felt'] .control--field {
+  border: none;
+}
+
+/* ========================================================================= */
+/*  Cards & sheets — stitched felt, stacked layer on layer                   */
+/* ========================================================================= */
+
+[data-style='felt'] .card,
+[data-style='felt'] .faq__item,
+[data-style='felt'] .hero__def,
+[data-style='felt'] .perspectives__subject,
+[data-style='felt'] .perspectives__panel {
+  background-color: var(--surface);
+  background-image: var(--felt-noise);
+  border: 2px dashed var(--stitch);
+  box-shadow: var(--shadow-2);
+}
+
+/* The panel keeps its solid channel strip — a ribbon of felt glued on edge. */
+[data-style='felt'] .perspectives__panel {
+  border-left: 8px solid var(--channel);
+}
+
+[data-style='felt'] .perspectives__tab {
+  background-color: var(--surface);
+  background-image: var(--felt-noise);
+  border: 2px dashed var(--border-strong);
+  box-shadow: var(--shadow-1);
+}
+[data-style='felt'] .perspectives__tab:hover {
+  border-color: var(--channel);
+}
+[data-style='felt'] .perspectives__tab.is-selected {
+  border-color: var(--channel);
+  border-style: solid;
+  background-color: color-mix(in srgb, var(--channel) 10%, var(--surface));
+  box-shadow: inset 0 -5px 0 0 var(--channel), var(--shadow-1);
+}
+
+/* Mission: a mustard felt patch, tilted, with its own thread + a sewn-on
+   button. Stitch colour follows the dark ink that sits on amber fill. */
+[data-style='felt'] .about__mission {
+  background-image: var(--felt-noise);
+  border: 2px dashed color-mix(in srgb, var(--on-amber-fill) 60%, transparent);
+  box-shadow: var(--shadow-2);
+}
+[data-style='felt'] .about__mission::after {
+  content: '';
+  position: absolute;
+  top: -0.55rem;
+  left: 50%;
+  width: 1.15rem;
+  height: 1.15rem;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: var(--accent-periwinkle);
+  border: 2px dashed color-mix(in srgb, var(--surface) 80%, transparent);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* ========================================================================= */
+/*  Buttons — cut felt patches that physically press down                    */
+/* ========================================================================= */
+
+[data-style='felt'] .btn {
+  border-style: dashed;
+}
+
+[data-style='felt'] .btn--primary {
+  background-color: var(--action);
+  background-image: var(--felt-noise);
+  border-color: color-mix(in srgb, var(--on-action) 70%, transparent);
+  box-shadow: 0 4px 0 color-mix(in srgb, var(--action) 65%, black);
+}
+[data-style='felt'] .btn--primary:hover {
+  background-color: var(--link-hover);
+  background-image: var(--felt-noise);
+}
+
+[data-style='felt'] .btn--secondary {
+  background-color: var(--surface);
+  background-image: var(--felt-noise);
+  border-color: currentColor;
+  box-shadow: 0 4px 0 var(--felt-under-1);
+}
+[data-style='felt'] .btn--secondary:hover {
+  background-color: color-mix(in srgb, var(--action) 10%, var(--surface));
+  background-image: var(--felt-noise);
+}
+
+[data-style='felt'] .btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--ink) 30%, transparent);
+}
+
+/* Step numbers: little round patches with a thread ring. */
+[data-style='felt'] .how__num {
+  border: 2px dashed color-mix(in srgb, var(--on-action) 65%, transparent);
+  box-shadow: 0 3px 0 var(--felt-under-1);
+}
+
+/* ========================================================================= */
+/*  Forms — seams instead of hairlines                                       */
+/* ========================================================================= */
+
+[data-style='felt'] .community__input,
+[data-style='felt'] .community__textarea {
+  border-style: dashed;
+}
+
+/* Mobile menu panel: same opaque felt sheet as the bar it hangs from. */
+@media (max-width: 52rem) {
+  [data-style='felt'] .topbar[data-menu-open='true'] .topbar__collapse {
+    background-color: var(--surface);
+    background-image: var(--felt-noise);
+    border-bottom: 2px dashed var(--stitch);
+  }
+}

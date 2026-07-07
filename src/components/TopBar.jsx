@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react'
 import { nav, site } from '../data/content.js'
 import { useActiveSection } from '../hooks/useActiveSection.js'
 import { Icon } from './Icon.jsx'
-import { FontControl, ThemeControl } from './Controls.jsx'
+import { FontControl, StyleControl, ThemeControl } from './Controls.jsx'
 import './TopBar.css'
 
 // Stable id list so the IntersectionObserver effect doesn't re-run each render.
@@ -81,6 +81,7 @@ export function TopBar() {
 
           <div className="topbar__controls" role="group" aria-label="Reading preferences">
             <ThemeControl />
+            <StyleControl />
             <FontControl />
           </div>
         </div>

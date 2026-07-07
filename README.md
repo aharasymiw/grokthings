@@ -52,11 +52,12 @@ public/
 src/
   main.jsx              # entry; conditionally loads the webfont (skips on Save-Data)
   App.jsx               # assembles the page
-  preferences.jsx       # theme / Calm mode / reading-font state + localStorage
+  preferences.jsx       # theme / style / reading-font state + localStorage
   data/content.js       # ALL page copy lives here (edit this to change words)
   hooks/                # useReveal (motion-safe), useActiveSection (nav highlight)
   components/           # one component + its .css each
-  styles/               # tokens.css, base.css, layout.css, ui.css, index.css
+  styles/               # tokens.css, base.css, layout.css, ui.css, index.css,
+                        # style-felt.css + style-lisafrank.css (whole-site skins)
 design/build-spec.json  # the synthesized design spec this page was built from
 ```
 
@@ -80,9 +81,11 @@ Accessibility is a first-class requirement here, not a polish pass:
 - **Motion:** the still state is the default; nothing loops or autoplays.
   Respects `prefers-reduced-motion`, plus a manual **Calm mode** for the many
   people who never set the OS flag.
-- **Reader agency:** in-page **Theme**, **Calm mode**, and **Reading font**
-  (Atkinson Hyperlegible / Comic Sans / System / extra spacing / OpenDyslexic)
-  controls, remembered between visits.
+- **Reader agency:** in-page **Theme**, **Style** (Calm / Felt / Lisa Frank —
+  whole-site skins, each with AA-checked light *and* dark palettes), and
+  **Reading font** (Atkinson Hyperlegible / Comic Sans / System / extra
+  spacing / OpenDyslexic) controls, remembered between visits. An explicit
+  reading-font pick always outranks a style's display font.
 - **Typography:** Atkinson Hyperlegible for body and headings, 18px+ base,
   generous spacing, left-aligned (never justified), 60–66ch measure.
 
