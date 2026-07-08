@@ -419,12 +419,12 @@
 /* The stitching sits INSIDE the patch edge (a seam allowance, like the
    video's hand-sewn strips), so the cut felt edge itself stays soft. The
    inset highlights make each sheet read plush/quilted. Focusable elements
-   are not in this list, so the outline never fights the focus ring. */
+   are not in this list, so the outline never fights the focus ring — the
+   perspectives tabpanel (tabIndex 0) gets edge stitching further below. */
 [data-style='felt'] .card,
 [data-style='felt'] .faq__item,
 [data-style='felt'] .hero__def,
-[data-style='felt'] .perspectives__subject,
-[data-style='felt'] .perspectives__panel {
+[data-style='felt'] .perspectives__subject {
   background-color: var(--surface);
   background-image: var(--felt-noise);
   border: none;
@@ -435,6 +435,16 @@
     inset 0 -3px 6px var(--felt-plush-lo),
     var(--shadow-2);
 }
+/* If any of these sheets ever takes focus, the focus ring must beat the
+   decorative stitch outline (same property, higher specificity here). */
+[data-style='felt'] .card:focus-visible,
+[data-style='felt'] .faq__item:focus-visible,
+[data-style='felt'] .hero__def:focus-visible,
+[data-style='felt'] .perspectives__subject:focus-visible,
+[data-style='felt'] .about__mission:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
 
 [data-style='felt'] .card {
   rotate: -0.35deg;
@@ -444,9 +454,18 @@
   rotate: 0.4deg;
 }
 
-/* The panel keeps its solid channel strip — a ribbon of felt glued on edge. */
+/* The panel is a focusable tabpanel, so it uses edge stitching (border,
+   not outline — focus needs the outline channel free) and keeps its solid
+   channel strip: a ribbon of felt glued on edge. */
 [data-style='felt'] .perspectives__panel {
+  background-color: var(--surface);
+  background-image: var(--felt-noise);
+  border: 2px dashed var(--stitch);
   border-left: 8px solid var(--channel);
+  box-shadow:
+    inset 0 2px 0 var(--felt-plush-hi),
+    inset 0 -3px 6px var(--felt-plush-lo),
+    var(--shadow-2);
 }
 
 [data-style='felt'] .perspectives__tab {
@@ -531,6 +550,9 @@
 [data-style='felt'] .btn--secondary:hover {
   background-color: color-mix(in srgb, var(--action) 10%, var(--surface));
   background-image: var(--felt-noise);
+  /* Mustard-on-slate dips to 4.35:1 on the dark hover mix; the link colour
+     clears 4.5:1 on the hover fill in both palettes. */
+  color: var(--link);
 }
 
 [data-style='felt'] .btn:active {
@@ -556,6 +578,10 @@
   background-color: var(--surface);
   background-image: var(--felt-noise);
   border-style: dashed;
+  /* The field shares the card's cream, so this seam is the only boundary
+     cue — full-strength thread keeps it ≥ 3:1 (the alpha --border-strong
+     composites to ~2.5:1 here). */
+  border-color: var(--ink-secondary);
   border-radius: var(--radius-sm);
   box-shadow: inset 0 1px 0 var(--felt-plush-hi), 0 2px 0 var(--felt-under-1);
 }
