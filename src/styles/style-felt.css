@@ -65,6 +65,22 @@
   --felt-plush-hi: rgba(255, 255, 255, 0.3);
   --felt-plush-lo: rgba(58, 49, 38, 0.07);
 
+  /* Hand-cut edges: turbulence displacement warps each patch's fabric
+     layer (two seeds so neighbouring patches aren't cut identically).
+     Applied to a backdrop pseudo-element so lettering stays crisp; Safari
+     ignores CSS reference filters and keeps straight cuts. */
+  --felt-wobble-a: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.013' numOctaves='2' seed='3' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3C/svg%3E#w");
+  --felt-wobble-b: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011' numOctaves='2' seed='11' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3C/svg%3E#w");
+
+  /* Whip stitches: short ticks crossing each patch edge, with uneven
+     spacing, lengths, and tilts baked into the tiles (h = top/bottom
+     edges, v = sides). The amber pair is the dark thread that sews the
+     mustard mission patch in both themes. */
+  --felt-ticks-h: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='14'%3E%3Cg stroke='%233a3126' stroke-opacity='.55' stroke-width='2.4' stroke-linecap='round' fill='none'%3E%3Cpath d='M12 2 10 13'/%3E%3Cpath d='M31 1 33 12'/%3E%3Cpath d='M52 2.5 51 13.5'/%3E%3Cpath d='M73 1 76 12'/%3E%3C/g%3E%3C/svg%3E");
+  --felt-ticks-v: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='96'%3E%3Cg stroke='%233a3126' stroke-opacity='.55' stroke-width='2.4' stroke-linecap='round' fill='none'%3E%3Cpath d='M2 12 13 10'/%3E%3Cpath d='M1 31 12 33'/%3E%3Cpath d='M2.5 52 13.5 51'/%3E%3Cpath d='M1 73 12 76'/%3E%3C/g%3E%3C/svg%3E");
+  --felt-ticks-amber-h: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='14'%3E%3Cg stroke='%232b241a' stroke-opacity='.6' stroke-width='2.4' stroke-linecap='round' fill='none'%3E%3Cpath d='M12 2 10 13'/%3E%3Cpath d='M31 1 33 12'/%3E%3Cpath d='M52 2.5 51 13.5'/%3E%3Cpath d='M73 1 76 12'/%3E%3C/g%3E%3C/svg%3E");
+  --felt-ticks-amber-v: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='96'%3E%3Cg stroke='%232b241a' stroke-opacity='.6' stroke-width='2.4' stroke-linecap='round' fill='none'%3E%3Cpath d='M2 12 13 10'/%3E%3Cpath d='M1 31 12 33'/%3E%3Cpath d='M2.5 52 13.5 51'/%3E%3Cpath d='M1 73 12 76'/%3E%3C/g%3E%3C/svg%3E");
+
   /* The nav patch for the section you're in: flipped to the charcoal patch. */
   --felt-pill-active-bg: #423930;
   --felt-pill-active-ink: #f8f0dc;
@@ -128,6 +144,11 @@
   --felt-plush-hi: rgba(255, 255, 255, 0.05);
   --felt-plush-lo: rgba(0, 0, 0, 0.28);
 
+  /* Cream thread on the dark boards (the amber/dark-thread pair and the
+     wobble filters are theme-invariant and carry over from the base). */
+  --felt-ticks-h: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='14'%3E%3Cg stroke='%23f1e9d6' stroke-opacity='.5' stroke-width='2.4' stroke-linecap='round' fill='none'%3E%3Cpath d='M12 2 10 13'/%3E%3Cpath d='M31 1 33 12'/%3E%3Cpath d='M52 2.5 51 13.5'/%3E%3Cpath d='M73 1 76 12'/%3E%3C/g%3E%3C/svg%3E");
+  --felt-ticks-v: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='96'%3E%3Cg stroke='%23f1e9d6' stroke-opacity='.5' stroke-width='2.4' stroke-linecap='round' fill='none'%3E%3Cpath d='M2 12 13 10'/%3E%3Cpath d='M1 31 12 33'/%3E%3Cpath d='M2.5 52 13.5 51'/%3E%3Cpath d='M1 73 12 76'/%3E%3C/g%3E%3C/svg%3E");
+
   /* In dark, mustard is the action colour, so the active pill goes teal. */
   --felt-pill-active-bg: #7fb3a7;
   --felt-pill-active-ink: #252d3d;
@@ -183,6 +204,9 @@
     --felt-cloud: #38455e;
     --felt-plush-hi: rgba(255, 255, 255, 0.05);
     --felt-plush-lo: rgba(0, 0, 0, 0.28);
+
+    --felt-ticks-h: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='14'%3E%3Cg stroke='%23f1e9d6' stroke-opacity='.5' stroke-width='2.4' stroke-linecap='round' fill='none'%3E%3Cpath d='M12 2 10 13'/%3E%3Cpath d='M31 1 33 12'/%3E%3Cpath d='M52 2.5 51 13.5'/%3E%3Cpath d='M73 1 76 12'/%3E%3C/g%3E%3C/svg%3E");
+    --felt-ticks-v: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='96'%3E%3Cg stroke='%23f1e9d6' stroke-opacity='.5' stroke-width='2.4' stroke-linecap='round' fill='none'%3E%3Cpath d='M2 12 13 10'/%3E%3Cpath d='M1 31 12 33'/%3E%3Cpath d='M2.5 52 13.5 51'/%3E%3Cpath d='M1 73 12 76'/%3E%3C/g%3E%3C/svg%3E");
 
     --felt-pill-active-bg: #7fb3a7;
     --felt-pill-active-ink: #252d3d;
@@ -416,31 +440,101 @@
 /*  Cards & sheets — stitched felt patches, each laid a touch askew          */
 /* ========================================================================= */
 
-/* The stitching sits INSIDE the patch edge (a seam allowance, like the
-   video's hand-sewn strips), so the cut felt edge itself stays soft. The
-   inset highlights make each sheet read plush/quilted. Focusable elements
-   are not in this list, so the outline never fights the focus ring — the
-   perspectives tabpanel (tabIndex 0) gets edge stitching further below. */
+/* Every sheet is a hand-cut patch. The fabric itself lives on a ::before
+   backdrop that takes the turbulence displacement (genuinely uneven,
+   wobbly cut edges) and whip-stitch ticks crossing every edge at
+   hand-spaced intervals. Text stays on the host element — crisp and
+   undistorted — and hosts carry no decorative outline, so the focus ring
+   works untouched on the focusable tabpanel. */
 [data-style='felt'] .card,
 [data-style='felt'] .faq__item,
 [data-style='felt'] .hero__def,
-[data-style='felt'] .perspectives__subject {
-  background-color: var(--surface);
-  background-image: var(--felt-noise);
+[data-style='felt'] .perspectives__subject,
+[data-style='felt'] .perspectives__panel,
+[data-style='felt'] .about__mission {
+  position: relative;
+  isolation: isolate;
+  background: none;
   border: none;
-  outline: 2px dashed var(--stitch);
-  outline-offset: -7px;
+  box-shadow: none;
+}
+[data-style='felt'] .card::before,
+[data-style='felt'] .faq__item::before,
+[data-style='felt'] .hero__def::before,
+[data-style='felt'] .perspectives__subject::before,
+[data-style='felt'] .perspectives__panel::before,
+[data-style='felt'] .about__mission::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background-color: var(--surface);
+  background-image:
+    var(--felt-ticks-h),
+    var(--felt-ticks-h),
+    var(--felt-ticks-v),
+    var(--felt-ticks-v),
+    var(--felt-noise);
+  /* Staggered x/y phases so no two edges start their stitching alike. */
+  background-position:
+    left 6px top 2px,
+    left 17px bottom 2px,
+    left 2px top 10px,
+    right 2px top 23px,
+    0 0;
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y, repeat;
   box-shadow:
     inset 0 2px 0 var(--felt-plush-hi),
     inset 0 -3px 6px var(--felt-plush-lo),
     var(--shadow-2);
+  filter: var(--felt-wobble-a);
 }
-/* If any of these sheets ever takes focus, the focus ring must beat the
-   decorative stitch outline (same property, higher specificity here). */
+/* Neighbouring patches are cut with a different hand… */
+[data-style='felt'] .how__item:nth-child(even) .card::before,
+[data-style='felt'] .community__card:nth-child(even).card::before,
+[data-style='felt'] .faq__item:nth-child(even)::before,
+[data-style='felt'] .perspectives__subject::before {
+  filter: var(--felt-wobble-b);
+}
+/* …and no two are quite the same rectangle. */
+[data-style='felt'] .faq__item:nth-child(odd) {
+  border-radius: 15px 23px 13px 25px;
+}
+[data-style='felt'] .faq__item:nth-child(even) {
+  border-radius: 24px 14px 22px 16px;
+}
+[data-style='felt'] .how__item:nth-child(even) .card,
+[data-style='felt'] .community__card:nth-child(even).card {
+  border-radius: 23px 15px 24px 13px;
+}
+
+/* The calm skin clips FAQ corners; the wobbled cut needs to spill a few
+   pixels past the box. */
+[data-style='felt'] .faq__item {
+  overflow: visible;
+}
+/* The question strips are short — four stitched edges read as fringe, so
+   only their ends are whip-bound. */
+[data-style='felt'] .faq__item::before {
+  background-image:
+    var(--felt-ticks-v),
+    var(--felt-ticks-v),
+    var(--felt-noise);
+  background-position:
+    left 2px top 6px,
+    right 2px top 15px,
+    0 0;
+  background-repeat: repeat-y, repeat-y, repeat;
+}
+
+/* If any of these sheets ever takes focus, the ring must stay visible
+   (insurance — none carries a decorative outline any more). */
 [data-style='felt'] .card:focus-visible,
 [data-style='felt'] .faq__item:focus-visible,
 [data-style='felt'] .hero__def:focus-visible,
 [data-style='felt'] .perspectives__subject:focus-visible,
+[data-style='felt'] .perspectives__panel:focus-visible,
 [data-style='felt'] .about__mission:focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 2px;
@@ -454,18 +548,10 @@
   rotate: 0.4deg;
 }
 
-/* The panel is a focusable tabpanel, so it uses edge stitching (border,
-   not outline — focus needs the outline channel free) and keeps its solid
-   channel strip: a ribbon of felt glued on edge. */
+/* The tabpanel keeps its solid channel strip on the host — a straight
+   ribbon of felt glued over the wobbly cut. */
 [data-style='felt'] .perspectives__panel {
-  background-color: var(--surface);
-  background-image: var(--felt-noise);
-  border: 2px dashed var(--stitch);
   border-left: 8px solid var(--channel);
-  box-shadow:
-    inset 0 2px 0 var(--felt-plush-hi),
-    inset 0 -3px 6px var(--felt-plush-lo),
-    var(--shadow-2);
 }
 
 [data-style='felt'] .perspectives__tab {
@@ -494,17 +580,16 @@
   border-bottom: 2px dashed var(--stitch);
 }
 
-/* Mission: a mustard felt patch, tilted, with its own thread + a sewn-on
-   button. Stitch colour follows the dark ink that sits on amber fill. */
-[data-style='felt'] .about__mission {
-  background-image: var(--felt-noise);
-  border: none;
-  outline: 2px dashed color-mix(in srgb, var(--on-amber-fill) 60%, transparent);
-  outline-offset: -7px;
-  box-shadow:
-    inset 0 2px 0 var(--felt-plush-hi),
-    inset 0 -3px 6px var(--felt-plush-lo),
-    var(--shadow-2);
+/* Mission: a mustard felt patch, tilted, whip-stitched with dark thread
+   (readable on the amber fill in both themes), plus its sewn-on button. */
+[data-style='felt'] .about__mission::before {
+  background-color: var(--accent-amber-fill);
+  background-image:
+    var(--felt-ticks-amber-h),
+    var(--felt-ticks-amber-h),
+    var(--felt-ticks-amber-v),
+    var(--felt-ticks-amber-v),
+    var(--felt-noise);
 }
 [data-style='felt'] .about__mission::after {
   content: '';
