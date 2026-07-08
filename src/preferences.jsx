@@ -127,13 +127,14 @@ export function PreferencesProvider({ children }) {
     else write(THEME_KEY, theme)
   }, [theme])
 
-  // Apply visual style to the document + persist. Lisa Frank's display font
-  // is the comic stack, so make sure a comic face exists on this device.
+  // Apply visual style to the document + persist. Lisa Frank's and Felt's
+  // display font is the comic stack, so make sure a comic face exists on
+  // this device.
   useEffect(() => {
     html().setAttribute('data-style', style)
     if (style === 'calm') remove(STYLE_KEY)
     else write(STYLE_KEY, style)
-    if (style === 'lisafrank') ensureComicNeue()
+    if (style === 'lisafrank' || style === 'felt') ensureComicNeue()
   }, [style])
 
   // Apply reading font (loading OpenDyslexic / Comic Neue on demand).
